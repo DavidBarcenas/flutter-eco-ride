@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "793936942143",
+    "firebase_url": "https://ecoride-c3fe5-default-rtdb.firebaseio.com",
+    "project_id": "ecoride-c3fe5",
+    "storage_bucket": "ecoride-c3fe5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793936942143:android:955bc6e6df6ab28721548a",
+        "android_client_info": {
+          "package_name": "com.example.ecoride"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793936942143-f39f2s4j81l2cl90e8nd9ruelu8ofkd3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGd6qVjlQBPV_OJhpyTbkdR8lN02J8k-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793936942143-f39f2s4j81l2cl90e8nd9ruelu8ofkd3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

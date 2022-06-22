@@ -1,4 +1,4 @@
-import 'package:ecoride/screens/home-page.dart';
+import 'package:ecoride/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
