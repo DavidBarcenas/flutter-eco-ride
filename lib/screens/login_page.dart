@@ -1,3 +1,4 @@
+import 'package:ecoride/resources/strings.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class LoginPage extends StatelessWidget {
                     width: 100.0,
                   ),
                   const SizedBox(height: 40),
-                  const Text('Sign In as a Rider',
+                  const Text(Strings.signIn,
                       textAlign: TextAlign.center,
                       style: TextStyle(fontFamily: 'Brand-Bold', fontSize: 25)),
                   Padding(
@@ -32,7 +33,7 @@ class LoginPage extends StatelessWidget {
                         const TextField(
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
-                              labelText: 'Email address',
+                              labelText: Strings.emailAddress,
                               labelStyle: TextStyle(fontSize: 14.0),
                               hintStyle: TextStyle(
                                   color: Colors.grey, fontSize: 10.0)),
@@ -42,7 +43,7 @@ class LoginPage extends StatelessWidget {
                         const TextField(
                             obscureText: true,
                             decoration: InputDecoration(
-                                labelText: 'Password',
+                                labelText: Strings.password,
                                 labelStyle: TextStyle(fontSize: 14.0),
                                 hintStyle: TextStyle(
                                     color: Colors.grey, fontSize: 10.0)),
@@ -61,7 +62,7 @@ class LoginPage extends StatelessWidget {
                               height: 50,
                               child: Center(
                                 child: Text(
-                                  'LOGIN',
+                                  Strings.enterBtn,
                                   style: TextStyle(
                                       fontSize: 18, fontFamily: 'Brand-Bold'),
                                 ),
@@ -74,10 +75,10 @@ class LoginPage extends StatelessWidget {
                     child: RichText(
                         text: TextSpan(children: [
                       const TextSpan(
-                          text: "Don't have an account, ",
+                          text: "${Strings.dontHaveAccount} ",
                           style: TextStyle(color: Colors.grey)),
                       TextSpan(
-                          text: 'sign up here!',
+                          text: Strings.signUpLink,
                           style: const TextStyle(color: Colors.green),
                           recognizer: TapGestureRecognizer()..onTap = () {}),
                     ])),

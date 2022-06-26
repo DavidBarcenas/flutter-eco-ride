@@ -1,3 +1,4 @@
+import 'package:ecoride/resources/strings.dart';
 import 'package:ecoride/screens/login_page.dart';
 import 'package:ecoride/utils/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'ECORIDE',
+        title: Strings.appTitle,
         theme: ThemeData(
           // This is the theme of your application.
           //
