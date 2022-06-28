@@ -2,6 +2,8 @@ import 'package:ecoride/resources/strings.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import '../components/logo.dart';
+
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -16,12 +18,7 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 70),
-                  const Image(
-                    image: AssetImage('images/logo.png'),
-                    alignment: Alignment.center,
-                    height: 100.0,
-                    width: 100.0,
-                  ),
+                  const Logo(),
                   const SizedBox(height: 40),
                   const Text(Strings.signIn,
                       textAlign: TextAlign.center,

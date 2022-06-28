@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import '../components/logo.dart';
 import '../resources/strings.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -16,12 +17,7 @@ class RegisterPage extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 70),
-                  const Image(
-                    image: AssetImage('images/logo.png'),
-                    alignment: Alignment.center,
-                    height: 100.0,
-                    width: 100.0,
-                  ),
+                  const Logo(),
                   const SizedBox(height: 40),
                   const Text(Strings.signUp,
                       textAlign: TextAlign.center,
