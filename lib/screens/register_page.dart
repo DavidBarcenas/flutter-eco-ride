@@ -1,9 +1,9 @@
-import 'package:ecoride/resources/strings.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import '../resources/strings.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class LoginPage extends StatelessWidget {
                     width: 100.0,
                   ),
                   const SizedBox(height: 40),
-                  const Text(Strings.signIn,
+                  const Text(Strings.signUp,
                       textAlign: TextAlign.center,
                       style: TextStyle(fontFamily: 'Brand-Bold', fontSize: 25)),
                   Padding(
@@ -31,9 +31,29 @@ class LoginPage extends StatelessWidget {
                     child: Column(
                       children: [
                         const TextField(
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                              labelText: Strings.fullName,
+                              labelStyle: TextStyle(fontSize: 14.0),
+                              hintStyle: TextStyle(
+                                  color: Colors.grey, fontSize: 10.0)),
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        const SizedBox(height: 10),
+                        const TextField(
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                               labelText: Strings.emailAddress,
+                              labelStyle: TextStyle(fontSize: 14.0),
+                              hintStyle: TextStyle(
+                                  color: Colors.grey, fontSize: 10.0)),
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        const SizedBox(height: 10),
+                        const TextField(
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                              labelText: Strings.phoneNumber,
                               labelStyle: TextStyle(fontSize: 14.0),
                               hintStyle: TextStyle(
                                   color: Colors.grey, fontSize: 10.0)),
@@ -62,7 +82,7 @@ class LoginPage extends StatelessWidget {
                               height: 50,
                               child: Center(
                                 child: Text(
-                                  Strings.enterBtn,
+                                  Strings.createBtn,
                                   style: TextStyle(
                                       fontSize: 18, fontFamily: 'Brand-Bold'),
                                 ),
@@ -75,10 +95,10 @@ class LoginPage extends StatelessWidget {
                     child: RichText(
                         text: TextSpan(children: [
                       const TextSpan(
-                          text: "${Strings.dontHaveAccount} ",
+                          text: "${Strings.haveAccount} ",
                           style: TextStyle(color: Colors.grey)),
                       TextSpan(
-                          text: Strings.signUp,
+                          text: Strings.signInLink,
                           style: const TextStyle(color: Colors.green),
                           recognizer: TapGestureRecognizer()..onTap = () {}),
                     ])),
