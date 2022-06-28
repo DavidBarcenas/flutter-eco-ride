@@ -1,10 +1,14 @@
+import 'package:ecoride/resources/ride_colors.dart';
 import 'package:ecoride/resources/strings.dart';
+import 'package:ecoride/screens/register_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../components/logo.dart';
 
 class LoginPage extends StatelessWidget {
+  static const String id = 'login';
+
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -49,7 +53,7 @@ class LoginPage extends StatelessWidget {
                         ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.green,
+                              primary: RideColors.green,
                               onPrimary: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25.0),
@@ -73,11 +77,13 @@ class LoginPage extends StatelessWidget {
                         text: TextSpan(children: [
                       const TextSpan(
                           text: "${Strings.dontHaveAccount} ",
-                          style: TextStyle(color: Colors.grey)),
+                          style: TextStyle(color: RideColors.textLight)),
                       TextSpan(
                           text: Strings.signUp,
-                          style: const TextStyle(color: Colors.green),
-                          recognizer: TapGestureRecognizer()..onTap = () {}),
+                          style: const TextStyle(color: RideColors.green),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () => Navigator.pushNamedAndRemoveUntil(
+                                context, RegisterPage.id, (route) => false)),
                     ])),
                   )
                 ],

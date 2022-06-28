@@ -1,4 +1,5 @@
 import 'package:ecoride/resources/strings.dart';
+import 'package:ecoride/screens/home_page.dart';
 import 'package:ecoride/screens/login_page.dart';
 import 'package:ecoride/screens/register_page.dart';
 import 'package:ecoride/utils/firebase_options.dart';
@@ -40,6 +41,11 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: const RegisterPage());
+        initialRoute: LoginPage.id,
+        routes: {
+          RegisterPage.id: ((context) => const RegisterPage()),
+          LoginPage.id: ((context) => const LoginPage()),
+          HomePage.id: ((context) => const HomePage())
+        });
   }
 }
