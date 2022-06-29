@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: LoginPage.id,
         routes: {
-          RegisterPage.id: ((context) => const RegisterPage()),
+          RegisterPage.id: ((context) => RegisterPage()),
           LoginPage.id: ((context) => const LoginPage()),
           HomePage.id: ((context) => const HomePage())
         });

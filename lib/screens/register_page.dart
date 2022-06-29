@@ -1,4 +1,5 @@
 import 'package:ecoride/screens/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../widgets/button.dart';
@@ -9,7 +10,56 @@ import '../resources/strings.dart';
 class RegisterPage extends StatelessWidget {
   static const String id = 'register';
 
-  const RegisterPage({Key? key}) : super(key: key);
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
+      GlobalKey<ScaffoldMessengerState>();
+
+  final fullNameController = TextEditingController();
+  final phoneController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  RegisterPage({Key? key}) : super(key: key);
+
+  void validateFields(BuildContext context) {
+    if (fullNameController.text.length < 3) {
+      showSnackBar(context, 'Ingresa un nombre válido');
+      return;
+    }
+    if (phoneController.text.length < 10) {
+      showSnackBar(context, 'Ingresa un número de celular válido');
+      return;
+    }
+    if (!emailController.text.contains('@')) {
+      showSnackBar(context, 'Ingresa un correo electrónico válido');
+      return;
+    }
+    if (passwordController.text.length < 8) {
+      showSnackBar(context, 'La contraseña debe tener al menos 8 caracteres');
+      return;
+    }
+    registerUser();
+  }
+
+  void registerUser() async {
+    final User? user = (await _auth.createUserWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text))
+        .user;
+
+    if (user != null) {
+      print("Registration successful");
+    }
+  }
+
+  void showSnackBar(BuildContext context, String title) {
+    final snackbar = SnackBar(
+        content: Text(
+      title,
+      textAlign: TextAlign.center,
+      style: const TextStyle(fontSize: 15),
+    ));
+    ScaffoldMessenger.of(context).showSnackBar(snackbar);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,49 +81,53 @@ class RegisterPage extends StatelessWidget {
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
                       children: [
-                        const TextField(
+                        TextField(
+                          controller: fullNameController,
                           keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               labelText: Strings.fullName,
                               labelStyle: TextStyle(fontSize: 14.0),
                               hintStyle: TextStyle(
                                   color: Colors.grey, fontSize: 10.0)),
-                          style: TextStyle(fontSize: 14),
+                          style: const TextStyle(fontSize: 14),
                         ),
                         const SizedBox(height: 10),
-                        const TextField(
+                        TextField(
+                          controller: emailController,
                           keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               labelText: Strings.emailAddress,
                               labelStyle: TextStyle(fontSize: 14.0),
                               hintStyle: TextStyle(
                                   color: Colors.grey, fontSize: 10.0)),
-                          style: TextStyle(fontSize: 14),
+                          style: const TextStyle(fontSize: 14),
                         ),
                         const SizedBox(height: 10),
-                        const TextField(
+                        TextField(
+                          controller: phoneController,
                           keyboardType: TextInputType.phone,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               labelText: Strings.phoneNumber,
                               labelStyle: TextStyle(fontSize: 14.0),
                               hintStyle: TextStyle(
                                   color: Colors.grey, fontSize: 10.0)),
-                          style: TextStyle(fontSize: 14),
+                          style: const TextStyle(fontSize: 14),
                         ),
                         const SizedBox(height: 10),
-                        const TextField(
+                        TextField(
+                            controller: passwordController,
                             obscureText: true,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                                 labelText: Strings.password,
                                 labelStyle: TextStyle(fontSize: 14.0),
                                 hintStyle: TextStyle(
                                     color: Colors.grey, fontSize: 10.0)),
-                            style: TextStyle(fontSize: 14)),
+                            style: const TextStyle(fontSize: 14)),
                         const SizedBox(height: 40),
                         Button(
                           title: Strings.createBtn,
                           color: RideColors.green,
-                          onPressed: () {},
+                          onPressed: () => validateFields(context),
                         ),
                         const SizedBox(height: 15),
                       ],
