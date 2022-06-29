@@ -2,7 +2,7 @@ import 'package:ecoride/resources/strings.dart';
 import 'package:ecoride/screens/home_page.dart';
 import 'package:ecoride/screens/login_page.dart';
 import 'package:ecoride/screens/register_page.dart';
-import 'package:ecoride/utils/firebase_options.dart';
+import 'package:ecoride/resources/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
