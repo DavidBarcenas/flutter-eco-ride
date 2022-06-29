@@ -1,7 +1,8 @@
 import 'package:ecoride/screens/login_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../components/logo.dart';
+import '../widgets/button.dart';
+import '../widgets/logo.dart';
 import '../resources/ride_colors.dart';
 import '../resources/strings.dart';
 
@@ -69,25 +70,12 @@ class RegisterPage extends StatelessWidget {
                                     color: Colors.grey, fontSize: 10.0)),
                             style: TextStyle(fontSize: 14)),
                         const SizedBox(height: 40),
-                        ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              primary: RideColors.green,
-                              onPrimary: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25.0),
-                              ),
-                            ),
-                            child: const SizedBox(
-                              height: 50,
-                              child: Center(
-                                child: Text(
-                                  Strings.createBtn,
-                                  style: TextStyle(
-                                      fontSize: 18, fontFamily: 'Brand-Bold'),
-                                ),
-                              ),
-                            ))
+                        Button(
+                          title: Strings.createBtn,
+                          color: RideColors.green,
+                          onPressed: () {},
+                        ),
+                        const SizedBox(height: 15),
                       ],
                     ),
                   ),
