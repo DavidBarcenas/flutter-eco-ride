@@ -10,6 +10,7 @@ import '../widgets/button.dart';
 import '../widgets/logo.dart';
 import '../resources/ride_colors.dart';
 import '../resources/strings.dart';
+import '../widgets/progress_dialog.dart';
 
 class RegisterPage extends StatefulWidget {
   static const String id = 'register';
@@ -52,11 +53,18 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void registerUser() async {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) =>
+            const ProgressDialog(text: 'Creando cuenta...'));
+
     final User? user = (await _auth
             .createUserWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text)
             .catchError((exception) {
-      PlatformException thisEx = exception;
+      Navigator.pop(context);
+      FirebaseAuthException thisEx = exception;
       showSnackBar(thisEx.message ?? 'Algo salió mal. Intentalo más tarde');
     }))
         .user;

@@ -3,6 +3,7 @@ import 'package:ecoride/resources/ride_colors.dart';
 import 'package:ecoride/resources/strings.dart';
 import 'package:ecoride/screens/home_page.dart';
 import 'package:ecoride/screens/register_page.dart';
+import 'package:ecoride/widgets/progress_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/gestures.dart';
@@ -41,10 +42,17 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void login() async {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) =>
+            const ProgressDialog(text: 'Entrando...'));
+
     final User? user = (await _auth
             .signInWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text)
             .catchError((exception) {
+      Navigator.pop(context);
       FirebaseAuthException thisEx = exception;
       showSnackBar(thisEx.message ?? 'Algo salió mal. Intentalo más tarde');
     }))
