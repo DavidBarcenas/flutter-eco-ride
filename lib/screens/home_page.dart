@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:line_icons/line_icons.dart';
 import 'dart:async';
+import 'dart:io';
 
 import '../widgets/custom_divider.dart';
 
@@ -18,6 +19,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final Completer<GoogleMapController> _controller = Completer();
   late GoogleMapController mapController;
+  double mapBottomPadding = 0;
+  double searchPanelHeight = (Platform.isIOS) ? 300 : 275;
 
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
@@ -30,19 +33,24 @@ class _HomePageState extends State<HomePage> {
         body: Stack(
       children: [
         GoogleMap(
+            padding: EdgeInsets.only(bottom: mapBottomPadding),
             mapType: MapType.normal,
             myLocationButtonEnabled: true,
             initialCameraPosition: _kGooglePlex,
             onMapCreated: (GoogleMapController controller) {
               _controller.complete(controller);
               mapController = controller;
+
+              setState(() {
+                mapBottomPadding = (Platform.isIOS) ? 270 : 280;
+              });
             }),
         Positioned(
           left: 0,
           right: 0,
           bottom: 0,
           child: Container(
-            height: 300,
+            height: searchPanelHeight,
             decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
