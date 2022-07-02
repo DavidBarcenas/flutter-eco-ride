@@ -25,8 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
-      GlobalKey<ScaffoldMessengerState>();
+  final GlobalKey<ScaffoldMessengerState> _scaffoldKey = GlobalKey<ScaffoldMessengerState>();
 
   void validateFields() {
     if (!emailController.text.contains('@')) {
@@ -44,12 +43,10 @@ class _LoginPageState extends State<LoginPage> {
     showDialog(
         barrierDismissible: false,
         context: context,
-        builder: (BuildContext context) =>
-            const ProgressDialog(text: 'Entrando...'));
+        builder: (BuildContext context) => const ProgressDialog(text: 'Entrando...'));
 
     final User? user = (await _auth
-            .signInWithEmailAndPassword(
-                email: emailController.text, password: passwordController.text)
+            .signInWithEmailAndPassword(email: emailController.text, password: passwordController.text)
             .catchError((exception) {
       Navigator.pop(context);
       FirebaseAuthException thisEx = exception;
@@ -58,35 +55,24 @@ class _LoginPageState extends State<LoginPage> {
         .user;
 
     if (user != null) {
-      DatabaseReference userRef =
-          FirebaseDatabase.instance.ref('users/${user.uid}');
+      DatabaseReference userRef = FirebaseDatabase.instance.ref('users/${user.uid}');
 
       userRef.once().then((resp) => {
-            if (resp.snapshot.value != null)
-              {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, HomePage.id, (route) => false)
-              }
+            if (resp.snapshot.value != null) {Navigator.pushNamedAndRemoveUntil(context, HomePage.id, (route) => false)}
           });
     }
   }
 
   void checkConnectivity() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult != ConnectivityResult.mobile &&
-        connectivityResult != ConnectivityResult.wifi) {
+    if (connectivityResult != ConnectivityResult.mobile && connectivityResult != ConnectivityResult.wifi) {
       showSnackBar('No tienes conexión a internet');
       return;
     }
   }
 
   void showSnackBar(String title) {
-    final snackbar = SnackBar(
-        content: Text(
-      title,
-      textAlign: TextAlign.center,
-      style: const TextStyle(fontSize: 15),
-    ));
+    final snackbar = SnackBar(content: Text(title, textAlign: TextAlign.center, style: const TextStyle(fontSize: 15)));
     _scaffoldKey.currentState?.showSnackBar(snackbar);
   }
 
@@ -106,9 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                     const Logo(),
                     const SizedBox(height: 40),
                     const Text(Strings.signIn,
-                        textAlign: TextAlign.center,
-                        style:
-                            TextStyle(fontFamily: 'Brand-Bold', fontSize: 25)),
+                        textAlign: TextAlign.center, style: TextStyle(fontFamily: 'Brand-Bold', fontSize: 25)),
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
@@ -119,8 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                             decoration: const InputDecoration(
                                 labelText: Strings.emailAddress,
                                 labelStyle: TextStyle(fontSize: 14.0),
-                                hintStyle: TextStyle(
-                                    color: Colors.grey, fontSize: 10.0)),
+                                hintStyle: TextStyle(color: Colors.grey, fontSize: 10.0)),
                             style: const TextStyle(fontSize: 14),
                           ),
                           const SizedBox(height: 10),
@@ -130,8 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                               decoration: const InputDecoration(
                                   labelText: Strings.password,
                                   labelStyle: TextStyle(fontSize: 14.0),
-                                  hintStyle: TextStyle(
-                                      color: Colors.grey, fontSize: 10.0)),
+                                  hintStyle: TextStyle(color: Colors.grey, fontSize: 10.0)),
                               style: const TextStyle(fontSize: 14)),
                           const SizedBox(height: 40),
                           Button(
@@ -147,14 +129,14 @@ class _LoginPageState extends State<LoginPage> {
                       child: RichText(
                           text: TextSpan(children: [
                         const TextSpan(
-                            text: "${Strings.dontHaveAccount} ",
-                            style: TextStyle(color: RideColors.textLight)),
+                            text: "${Strings.dontHaveAccount} ", style: TextStyle(color: RideColors.textLight)),
                         TextSpan(
                             text: Strings.signUp,
                             style: const TextStyle(color: RideColors.green),
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () => Navigator.pushNamedAndRemoveUntil(
-                                  context, RegisterPage.id, (route) => false)),
+                              ..onTap = () {
+                                Navigator.pushNamedAndRemoveUntil(context, RegisterPage.id, (route) => false);
+                              }),
                       ])),
                     )
                   ],

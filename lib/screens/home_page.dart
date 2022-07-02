@@ -144,11 +144,7 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20.0),
                     boxShadow: const [
-                      BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 5.0,
-                          spreadRadius: 5.0,
-                          offset: Offset(0.7, 0.7))
+                      BoxShadow(color: Colors.black26, blurRadius: 5.0, spreadRadius: 5.0, offset: Offset(0.7, 0.7))
                     ],
                   ),
                   child: const CircleAvatar(
@@ -170,19 +166,12 @@ class _HomePageState extends State<HomePage> {
                 height: searchPanelHeight,
                 decoration: const BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(15.0),
-                        topRight: Radius.circular(15.0)),
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
                     boxShadow: [
-                      BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 15.0,
-                          spreadRadius: 0.5,
-                          offset: Offset(0.7, 0.7))
+                      BoxShadow(color: Colors.black26, blurRadius: 15.0, spreadRadius: 0.5, offset: Offset(0.7, 0.7))
                     ]),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 24.0, vertical: 18.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 18.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -195,8 +184,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       const Text(
                         '¿A dónde quieres ir?',
-                        style:
-                            TextStyle(fontSize: 18, fontFamily: 'Brand-Bold'),
+                        style: TextStyle(fontSize: 18, fontFamily: 'Brand-Bold'),
                       ),
                       const SizedBox(
                         height: 20.0,
@@ -207,10 +195,7 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(4.0),
                             boxShadow: const [
                               BoxShadow(
-                                  color: Colors.black12,
-                                  blurRadius: 2.0,
-                                  spreadRadius: 2.0,
-                                  offset: Offset(0.7, 0.7))
+                                  color: Colors.black12, blurRadius: 2.0, spreadRadius: 2.0, offset: Offset(0.7, 0.7))
                             ]),
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
@@ -247,8 +232,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Text(
                                 'Dirección de tu casa',
-                                style: TextStyle(
-                                    color: RideColors.dimText, fontSize: 11),
+                                style: TextStyle(color: RideColors.dimText, fontSize: 11),
                               )
                             ],
                           )
@@ -279,8 +263,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Text(
                                 'Dirección de tu trabajo',
-                                style: TextStyle(
-                                    color: RideColors.dimText, fontSize: 11),
+                                style: TextStyle(color: RideColors.dimText, fontSize: 11),
                               )
                             ],
                           )

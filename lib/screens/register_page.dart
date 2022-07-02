@@ -23,8 +23,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
-      GlobalKey<ScaffoldMessengerState>();
+  final GlobalKey<ScaffoldMessengerState> _scaffoldKey = GlobalKey<ScaffoldMessengerState>();
 
   final fullNameController = TextEditingController();
   final phoneController = TextEditingController();
@@ -55,12 +54,10 @@ class _RegisterPageState extends State<RegisterPage> {
     showDialog(
         barrierDismissible: false,
         context: context,
-        builder: (BuildContext context) =>
-            const ProgressDialog(text: 'Creando cuenta...'));
+        builder: (BuildContext context) => const ProgressDialog(text: 'Creando cuenta...'));
 
     final User? user = (await _auth
-            .createUserWithEmailAndPassword(
-                email: emailController.text, password: passwordController.text)
+            .createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text)
             .catchError((exception) {
       Navigator.pop(context);
       FirebaseAuthException thisEx = exception;
@@ -69,8 +66,7 @@ class _RegisterPageState extends State<RegisterPage> {
         .user;
 
     if (user != null) {
-      DatabaseReference newUserRef =
-          FirebaseDatabase.instance.ref('users/${user.uid}');
+      DatabaseReference newUserRef = FirebaseDatabase.instance.ref('users/${user.uid}');
 
       Map userMap = {
         'fullName': fullNameController.text,
@@ -86,8 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void checkConnectivity() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult != ConnectivityResult.mobile &&
-        connectivityResult != ConnectivityResult.wifi) {
+    if (connectivityResult != ConnectivityResult.mobile && connectivityResult != ConnectivityResult.wifi) {
       showSnackBar('No tienes conexión a internet');
       return;
     }
@@ -119,9 +114,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     const Logo(),
                     const SizedBox(height: 40),
                     const Text(Strings.signUp,
-                        textAlign: TextAlign.center,
-                        style:
-                            TextStyle(fontFamily: 'Brand-Bold', fontSize: 25)),
+                        textAlign: TextAlign.center, style: TextStyle(fontFamily: 'Brand-Bold', fontSize: 25)),
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
@@ -132,8 +125,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             decoration: const InputDecoration(
                                 labelText: Strings.fullName,
                                 labelStyle: TextStyle(fontSize: 14.0),
-                                hintStyle: TextStyle(
-                                    color: Colors.grey, fontSize: 10.0)),
+                                hintStyle: TextStyle(color: Colors.grey, fontSize: 10.0)),
                             style: const TextStyle(fontSize: 14),
                           ),
                           const SizedBox(height: 10),
@@ -143,8 +135,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             decoration: const InputDecoration(
                                 labelText: Strings.emailAddress,
                                 labelStyle: TextStyle(fontSize: 14.0),
-                                hintStyle: TextStyle(
-                                    color: Colors.grey, fontSize: 10.0)),
+                                hintStyle: TextStyle(color: Colors.grey, fontSize: 10.0)),
                             style: const TextStyle(fontSize: 14),
                           ),
                           const SizedBox(height: 10),
@@ -154,8 +145,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             decoration: const InputDecoration(
                                 labelText: Strings.phoneNumber,
                                 labelStyle: TextStyle(fontSize: 14.0),
-                                hintStyle: TextStyle(
-                                    color: Colors.grey, fontSize: 10.0)),
+                                hintStyle: TextStyle(color: Colors.grey, fontSize: 10.0)),
                             style: const TextStyle(fontSize: 14),
                           ),
                           const SizedBox(height: 10),
@@ -165,15 +155,13 @@ class _RegisterPageState extends State<RegisterPage> {
                               decoration: const InputDecoration(
                                   labelText: Strings.password,
                                   labelStyle: TextStyle(fontSize: 14.0),
-                                  hintStyle: TextStyle(
-                                      color: Colors.grey, fontSize: 10.0)),
+                                  hintStyle: TextStyle(color: Colors.grey, fontSize: 10.0)),
                               style: const TextStyle(fontSize: 14)),
                           const SizedBox(height: 40),
                           Button(
                             title: Strings.createBtn,
                             color: RideColors.green,
-                            onPressed: () =>
-                                {checkConnectivity(), validateFields()},
+                            onPressed: () => {checkConnectivity(), validateFields()},
                           ),
                           const SizedBox(height: 15),
                         ],
@@ -182,15 +170,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     Center(
                       child: RichText(
                           text: TextSpan(children: [
-                        const TextSpan(
-                            text: "${Strings.haveAccount} ",
-                            style: TextStyle(color: RideColors.textLight)),
+                        const TextSpan(text: "${Strings.haveAccount} ", style: TextStyle(color: RideColors.textLight)),
                         TextSpan(
                             text: Strings.signInLink,
                             style: const TextStyle(color: RideColors.green),
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () => Navigator.pushNamedAndRemoveUntil(
-                                  context, LoginPage.id, (route) => false)),
+                              ..onTap =
+                                  () => Navigator.pushNamedAndRemoveUntil(context, LoginPage.id, (route) => false)),
                       ])),
                     )
                   ],
