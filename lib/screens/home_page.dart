@@ -1,6 +1,10 @@
+import 'package:ecoride/resources/ride_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:line_icons/line_icons.dart';
 import 'dart:async';
+
+import '../widgets/custom_divider.dart';
 
 class HomePage extends StatefulWidget {
   static const String id = 'home';
@@ -38,7 +42,7 @@ class _HomePageState extends State<HomePage> {
           right: 0,
           bottom: 0,
           child: Container(
-            height: 200,
+            height: 300,
             decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -95,7 +99,67 @@ class _HomePageState extends State<HomePage> {
                         Text('Busca tu destino')
                       ]),
                     ),
-                  )
+                  ),
+                  const SizedBox(
+                    height: 22.0,
+                  ),
+                  Row(
+                    children: [
+                      const Icon(
+                        LineIcons.home,
+                        color: RideColors.dimText,
+                      ),
+                      const SizedBox(
+                        width: 12,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text('Agregar casa'),
+                          SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            'Dirección de tu casa',
+                            style: TextStyle(
+                                color: RideColors.dimText, fontSize: 11),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  const CustomDivider(),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  Row(
+                    children: [
+                      const Icon(
+                        LineIcons.building,
+                        color: RideColors.dimText,
+                      ),
+                      const SizedBox(
+                        width: 12,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text('Agregar trabajo'),
+                          SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            'Dirección de tu trabajo',
+                            style: TextStyle(
+                                color: RideColors.dimText, fontSize: 11),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ],
               ),
             ),
