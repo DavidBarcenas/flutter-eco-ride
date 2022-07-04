@@ -1,3 +1,4 @@
+import 'package:ecoride/providers/app_data.dart';
 import 'package:ecoride/resources/strings.dart';
 import 'package:ecoride/screens/home_page.dart';
 import 'package:ecoride/screens/login_page.dart';
@@ -6,6 +7,7 @@ import 'package:ecoride/resources/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,17 +27,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: Strings.appTitle,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        initialRoute: HomePage.id,
-        routes: {
-          RegisterPage.id: ((context) => const RegisterPage()),
-          LoginPage.id: ((context) => const LoginPage()),
-          HomePage.id: ((context) => const HomePage())
-        });
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => AppData(),
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: Strings.appTitle,
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          initialRoute: HomePage.id,
+          routes: {
+            RegisterPage.id: ((context) => const RegisterPage()),
+            LoginPage.id: ((context) => const LoginPage()),
+            HomePage.id: ((context) => const HomePage())
+          }),
+    );
   }
 }
