@@ -42,6 +42,7 @@ dependencies:
   google_maps_flutter: ^2.1.8
   line_icons: ^2.0.1
   geolocator: ^9.0.0
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,4 @@
+import 'package:ecoride/helpers/helper_methods.dart';
 import 'package:ecoride/resources/ride_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -37,6 +38,8 @@ class _HomePageState extends State<HomePage> {
     LatLng pos = LatLng(position.latitude, position.longitude);
     CameraPosition cp = CameraPosition(target: pos, zoom: 14.0);
     mapController.animateCamera(CameraUpdate.newCameraPosition(cp));
+
+    String address = await HelperMethods.findCoordsAddress(position);
   }
 
   @override
