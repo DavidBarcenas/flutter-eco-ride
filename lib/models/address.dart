@@ -1,10 +1,4 @@
 class Address {
-  String placeName;
-  double latitud;
-  double longitude;
-  String placeId;
-  String placeFormattedAddress;
-
   Address({
     required this.placeName,
     required this.latitud,
@@ -12,4 +6,10 @@ class Address {
     required this.placeId,
     required this.placeFormattedAddress,
   });
+
+  String placeName;
+  double latitud;
+  double longitude;
+  String placeId;
+  String placeFormattedAddress;
 }
