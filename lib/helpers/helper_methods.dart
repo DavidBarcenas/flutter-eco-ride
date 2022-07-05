@@ -1,19 +1,16 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ecoride/helpers/request.dart';
-import 'package:ecoride/providers/app_data.dart';
-import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:provider/provider.dart';
 
 import '../models/address.dart';
 
 class HelperMethods {
-  static Future<String> findCoordsAddress(Position position, BuildContext context) async {
-    String placeAddress = '';
+  static Future<Address?> findCoordsAddress(Position position) async {
+    Address? address;
 
     var connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult != ConnectivityResult.mobile && connectivityResult != ConnectivityResult.wifi) {
-      return placeAddress;
+      return address;
     }
 
     var queryParams = {
@@ -23,17 +20,14 @@ class HelperMethods {
     };
     var response = await Request.getRequest('api.bigdatacloud.net', '/data/reverse-geocode-client', queryParams);
     if (response != 'Request failed') {
-      placeAddress = response['locality'];
-      Address pickupAddress = new Address(
-          placeName: placeName,
-          latitud: latitud,
-          longitude: longitude,
-          placeId: placeId,
-          placeFormattedAddress: placeFormattedAddress);
-
-      Provider.of<AppData>(context, listen: false).updatePickupAddress(pickupAddress);
+      address = Address(
+          placeName: response['locality'],
+          latitud: response['locality'],
+          longitude: response['locality'],
+          placeId: response['locality'],
+          placeFormattedAddress: response['locality']);
     }
 
-    return placeAddress;
+    return address;
   }
 }

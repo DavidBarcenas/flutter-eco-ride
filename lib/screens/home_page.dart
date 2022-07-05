@@ -1,12 +1,15 @@
 import 'package:ecoride/helpers/helper_methods.dart';
+import 'package:ecoride/models/address.dart';
 import 'package:ecoride/resources/ride_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:provider/provider.dart';
 import 'dart:async';
 import 'dart:io';
 
+import '../providers/app_data.dart';
 import '../widgets/custom_divider.dart';
 
 class HomePage extends StatefulWidget {
@@ -39,7 +42,12 @@ class _HomePageState extends State<HomePage> {
     CameraPosition cp = CameraPosition(target: pos, zoom: 14.0);
     mapController.animateCamera(CameraUpdate.newCameraPosition(cp));
 
-    String address = await HelperMethods.findCoordsAddress(position, context);
+    Address? address = await HelperMethods.findCoordsAddress(position);
+
+    if (address != null) {
+      if (!mounted) return;
+      Provider.of<AppData>(context, listen: false).updatePickupAddress(address);
+    }
   }
 
   @override
