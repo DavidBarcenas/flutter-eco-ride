@@ -1,3 +1,12 @@
 import 'package:flutter/material.dart';
 
-class AppData extends ChangeNotifier {}
+import '../models/address.dart';
+
+class AppData extends ChangeNotifier {
+  late Address pickupAddress;
+
+  void updatePickupAddress(Address pickup) {
+    pickupAddress = pickup;
+    notifyListeners();
+  }
+}

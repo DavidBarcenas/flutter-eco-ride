@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
     CameraPosition cp = CameraPosition(target: pos, zoom: 14.0);
     mapController.animateCamera(CameraUpdate.newCameraPosition(cp));
 
-    String address = await HelperMethods.findCoordsAddress(position);
+    String address = await HelperMethods.findCoordsAddress(position, context);
   }
 
   @override
