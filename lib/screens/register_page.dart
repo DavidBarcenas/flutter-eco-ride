@@ -32,19 +32,19 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void validateFields() {
     if (fullNameController.text.length < 3) {
-      showSnackBar('Ingresa un nombre válido');
+      showSnackBar(Strings.nameError);
       return;
     }
     if (phoneController.text.length < 10) {
-      showSnackBar('Ingresa un número de celular válido');
+      showSnackBar(Strings.phoneError);
       return;
     }
     if (!emailController.text.contains('@')) {
-      showSnackBar('Ingresa un correo electrónico válido');
+      showSnackBar(Strings.emailError);
       return;
     }
     if (passwordController.text.length < 8) {
-      showSnackBar('La contraseña debe tener al menos 8 caracteres');
+      showSnackBar(Strings.passwordLengthError);
       return;
     }
     registerUser();
@@ -54,14 +54,14 @@ class _RegisterPageState extends State<RegisterPage> {
     showDialog(
         barrierDismissible: false,
         context: context,
-        builder: (BuildContext context) => const ProgressDialog(text: 'Creando cuenta...'));
+        builder: (BuildContext context) => const ProgressDialog(text: Strings.loadingRegister));
 
     final User? user = (await _auth
             .createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text)
             .catchError((exception) {
       Navigator.pop(context);
       FirebaseAuthException thisEx = exception;
-      showSnackBar(thisEx.message ?? 'Algo salió mal. Intentalo más tarde');
+      showSnackBar(thisEx.message ?? Strings.genericResponseError);
     }))
         .user;
 
@@ -83,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
   void checkConnectivity() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult != ConnectivityResult.mobile && connectivityResult != ConnectivityResult.wifi) {
-      showSnackBar('No tienes conexión a internet');
+      showSnackBar(Strings.noInternetConnection);
       return;
     }
   }

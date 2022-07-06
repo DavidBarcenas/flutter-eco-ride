@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
     showDialog(
         barrierDismissible: false,
         context: context,
-        builder: (BuildContext context) => const ProgressDialog(text: Strings.loginSuccess));
+        builder: (BuildContext context) => const ProgressDialog(text: Strings.loadingLogin));
 
     final User? user = (await _auth
             .signInWithEmailAndPassword(email: emailController.text, password: passwordController.text)

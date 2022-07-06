@@ -11,9 +11,12 @@ class Strings {
   static const String signInLink = 'Inicia sesión';
   static const String fullName = 'Nombre completo';
   static const String phoneNumber = 'Número celular';
+  static const String nameError = 'Ingresa un nombre válido';
+  static const String phoneError = 'Ingresa un número de celular válido';
   static const String emailError = 'Ingresa un correo electrónico válido';
   static const String passwordLengthError = 'La contraseña debe tener al menos 8 caracteres';
-  static const String loginSuccess = 'Entrando...';
+  static const String loadingLogin = 'Entrando...';
+  static const String loadingRegister = 'Creando cuenta...';
   static const String genericResponseError = 'Algo salió mal. Intentalo más tarde';
   static const String noInternetConnection = 'No tienes conexión a internet';
 }
