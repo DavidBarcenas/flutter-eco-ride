@@ -1,3 +1,4 @@
+import 'package:ecoride/resources/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -43,7 +44,7 @@ class NavigationDrawer extends StatelessWidget {
                         SizedBox(
                           height: 5,
                         ),
-                        Text('Ver perfil')
+                        Text(Strings.viewProfile)
                       ],
                     ),
                   ),
@@ -54,42 +55,22 @@ class NavigationDrawer extends StatelessWidget {
         const SizedBox(
           height: 10.0,
         ),
-        const ListTile(
-          leading: Icon(LineIcons.accessibleIcon),
-          title: Text(
-            'Viajes gratis',
-            style: TextStyle(fontSize: 16.0),
-          ),
-        ),
-        const ListTile(
-          leading: Icon(LineIcons.accessibleIcon),
-          title: Text(
-            'Pagos',
-            style: TextStyle(fontSize: 16.0),
-          ),
-        ),
-        const ListTile(
-          leading: Icon(LineIcons.accessibleIcon),
-          title: Text(
-            'Historial',
-            style: TextStyle(fontSize: 16.0),
-          ),
-        ),
-        const ListTile(
-          leading: Icon(LineIcons.accessibleIcon),
-          title: Text(
-            'Soporte',
-            style: TextStyle(fontSize: 16.0),
-          ),
-        ),
-        const ListTile(
-          leading: Icon(LineIcons.accessibleIcon),
-          title: Text(
-            'Acerca de',
-            style: TextStyle(fontSize: 16.0),
-          ),
-        ),
+        navItem(Strings.navItem1, LineIcons.accessibleIcon),
+        navItem(Strings.navItem2, LineIcons.accessibleIcon),
+        navItem(Strings.navItem3, LineIcons.accessibleIcon),
+        navItem(Strings.navItem4, LineIcons.accessibleIcon),
+        navItem(Strings.navItem5, LineIcons.accessibleIcon),
       ],
     ));
+  }
+
+  ListTile navItem(String name, IconData icon) {
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(
+        name,
+        style: const TextStyle(fontSize: 16.0),
+      ),
+    );
   }
 }

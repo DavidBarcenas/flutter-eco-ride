@@ -19,4 +19,10 @@ class Strings {
   static const String loadingRegister = 'Creando cuenta...';
   static const String genericResponseError = 'Algo salió mal. Intentalo más tarde';
   static const String noInternetConnection = 'No tienes conexión a internet';
+  static const String navItem1 = 'Promociones';
+  static const String navItem2 = 'Pagos';
+  static const String navItem3 = 'Historial de viajes';
+  static const String navItem4 = 'Soporte';
+  static const String navItem5 = 'Acerca de';
+  static const String viewProfile = 'Ver perfil';
 }
