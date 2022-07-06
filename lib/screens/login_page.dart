@@ -29,11 +29,11 @@ class _LoginPageState extends State<LoginPage> {
 
   void validateFields() {
     if (!emailController.text.contains('@')) {
-      showSnackBar('Ingresa un correo electrónico válido');
+      showSnackBar(Strings.emailError);
       return;
     }
     if (passwordController.text.length < 8) {
-      showSnackBar('La contraseña debe tener al menos 8 caracteres');
+      showSnackBar(Strings.passwordLengthError);
       return;
     }
     login();
@@ -43,14 +43,14 @@ class _LoginPageState extends State<LoginPage> {
     showDialog(
         barrierDismissible: false,
         context: context,
-        builder: (BuildContext context) => const ProgressDialog(text: 'Entrando...'));
+        builder: (BuildContext context) => const ProgressDialog(text: Strings.loginSuccess));
 
     final User? user = (await _auth
             .signInWithEmailAndPassword(email: emailController.text, password: passwordController.text)
             .catchError((exception) {
       Navigator.pop(context);
       FirebaseAuthException thisEx = exception;
-      showSnackBar(thisEx.message ?? 'Algo salió mal. Intentalo más tarde');
+      showSnackBar(thisEx.message ?? Strings.genericResponseError);
     }))
         .user;
 
@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
   void checkConnectivity() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult != ConnectivityResult.mobile && connectivityResult != ConnectivityResult.wifi) {
-      showSnackBar('No tienes conexión a internet');
+      showSnackBar(Strings.noInternetConnection);
       return;
     }
   }

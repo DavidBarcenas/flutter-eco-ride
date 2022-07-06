@@ -11,4 +11,9 @@ class Strings {
   static const String signInLink = 'Inicia sesión';
   static const String fullName = 'Nombre completo';
   static const String phoneNumber = 'Número celular';
+  static const String emailError = 'Ingresa un correo electrónico válido';
+  static const String passwordLengthError = 'La contraseña debe tener al menos 8 caracteres';
+  static const String loginSuccess = 'Entrando...';
+  static const String genericResponseError = 'Algo salió mal. Intentalo más tarde';
+  static const String noInternetConnection = 'No tienes conexión a internet';
 }
