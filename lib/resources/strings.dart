@@ -29,4 +29,11 @@ class Strings {
   static const String locationPermissionDenied = 'Los permisos de ubicación están denegados';
   static const String locationCannotRequest =
       'Los permisos de ubicación están denegados permanentemente, no podemos solicitar permisos';
+  static const String panelTitle = 'Bienvenido';
+  static const String panelSearchLabel = '¿A dónde quieres ir?';
+  static const String panelInputSearchPlaceholder = 'Busca tu destino';
+  static const String panelHome = 'Agregar casa';
+  static const String panelWork = 'Agregar trabajo';
+  static const String panelHomeDefault = 'Dirección de casa';
+  static const String panelWorkDefault = 'Dirección de trabajo';
 }
