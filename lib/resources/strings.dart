@@ -25,4 +25,8 @@ class Strings {
   static const String navItem4 = 'Soporte';
   static const String navItem5 = 'Acerca de';
   static const String viewProfile = 'Ver perfil';
+  static const String locationDisabled = 'Los servicios de ubicación están deshabilitados';
+  static const String locationPermissionDenied = 'Los permisos de ubicación están denegados';
+  static const String locationCannotRequest =
+      'Los permisos de ubicación están denegados permanentemente, no podemos solicitar permisos';
 }
