@@ -1,12 +1,11 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ecoride/helpers/request.dart';
 import 'package:geolocator/geolocator.dart';
-
-import '../models/address.dart';
+import '../models/reverse_geocode.dart';
 
 class HelperMethods {
-  static Future<Address?> findCoordsAddress(Position position) async {
-    Address? address;
+  static Future<ReverseGeocode?> findCoordsAddress(Position position) async {
+    ReverseGeocode? address;
 
     var connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult != ConnectivityResult.mobile && connectivityResult != ConnectivityResult.wifi) {
@@ -20,12 +19,7 @@ class HelperMethods {
     };
     var response = await Request.getRequest('api.bigdatacloud.net', '/data/reverse-geocode-client', queryParams);
     if (response != 'Request failed') {
-      address = Address(
-          placeName: response['locality'],
-          latitud: response['locality'],
-          longitude: response['locality'],
-          placeId: response['locality'],
-          placeFormattedAddress: response['locality']);
+      address = ReverseGeocode.fromJson(response);
     }
 
     return address;
