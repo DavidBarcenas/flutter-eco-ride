@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20.0),
                     boxShadow: const [
-                      BoxShadow(color: Colors.black26, blurRadius: 5.0, spreadRadius: 5.0, offset: Offset(0.7, 0.7))
+                      BoxShadow(color: Colors.black26, blurRadius: 3.0, spreadRadius: 2.0, offset: Offset(0.7, 0.7))
                     ],
                   ),
                   child: const CircleAvatar(

@@ -26,7 +26,7 @@ class DestinationSearchPanel extends StatelessWidget {
               BoxShadow(color: Colors.black26, blurRadius: 15.0, spreadRadius: 0.5, offset: Offset(0.7, 0.7))
             ]),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 18.0),
+          padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 18.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -34,8 +34,11 @@ class DestinationSearchPanel extends StatelessWidget {
                 height: 5,
               ),
               const Text(
-                Strings.panelHome,
+                Strings.panelTitle,
                 style: TextStyle(fontSize: 10),
+              ),
+              const SizedBox(
+                height: 5,
               ),
               const Text(
                 Strings.panelSearchLabel,
@@ -46,11 +49,9 @@ class DestinationSearchPanel extends StatelessWidget {
               ),
               Container(
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(4.0),
-                    boxShadow: const [
-                      BoxShadow(color: Colors.black12, blurRadius: 2.0, spreadRadius: 2.0, offset: Offset(0.7, 0.7))
-                    ]),
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(4.0),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Row(children: const [
@@ -89,7 +90,7 @@ class DestinationSearchPanel extends StatelessWidget {
       children: [
         Icon(
           icon,
-          color: RideColors.dimText,
+          color: Colors.blueAccent,
         ),
         const SizedBox(
           width: 12,
@@ -106,7 +107,7 @@ class DestinationSearchPanel extends StatelessWidget {
               style: const TextStyle(color: RideColors.dimText, fontSize: 11),
             )
           ],
-        )
+        ),
       ],
     );
   }
