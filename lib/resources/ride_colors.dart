@@ -8,7 +8,7 @@ class RideColors {
   static const Color background = Color(0x00fffbfa);
   static const Color pink = Color(0xFFE66C75);
   static const Color orange = Color(0xFFE8913A);
-  static const Color blue = Color(0xFF2254A3);
+  static const Color blue = Color(0xff3070f6);
   static const Color accentPurple = Color(0x00ff4f5c);
   static const Color text = Color(0xFF383635);
   static const Color textLight = Color(0xFF918D8D);
