@@ -72,6 +72,7 @@ class NavigationDrawer extends StatelessWidget {
 
   ListTile navItem(String name, IconData icon) {
     return ListTile(
+      minLeadingWidth: 20.0,
       leading: Icon(
         icon,
         color: RideColors.blue,

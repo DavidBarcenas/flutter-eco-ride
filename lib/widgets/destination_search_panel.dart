@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:ecoride/resources/strings.dart';
+import 'package:ecoride/screens/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -47,23 +48,26 @@ class DestinationSearchPanel extends StatelessWidget {
               const SizedBox(
                 height: 20.0,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius: BorderRadius.circular(4.0),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Row(children: const [
-                    Icon(
-                      Icons.search,
-                      color: Colors.blueAccent,
-                    ),
-                    SizedBox(
-                      width: 10.0,
-                    ),
-                    Text(Strings.panelInputSearchPlaceholder)
-                  ]),
+              GestureDetector(
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage())),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                    borderRadius: BorderRadius.circular(4.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(children: const [
+                      Icon(
+                        Icons.search,
+                        color: Colors.blueAccent,
+                      ),
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Text(Strings.panelInputSearchPlaceholder)
+                    ]),
+                  ),
                 ),
               ),
               const SizedBox(
