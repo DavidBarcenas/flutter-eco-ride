@@ -1,5 +1,7 @@
+import 'package:ecoride/providers/app_data.dart';
 import 'package:ecoride/resources/ride_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -9,8 +11,24 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  var pickupController = TextEditingController();
+  var destinationController = TextEditingController();
+  var focusDestination = FocusNode();
+  bool focused = false;
+
+  void setFocus() {
+    if (!focused) {
+      FocusScope.of(context).requestFocus(focusDestination);
+      focused = true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    setFocus();
+    String address = Provider.of<AppData>(context).pickupAddress.locality;
+    pickupController.text = address;
+
     return Scaffold(
         body: Column(
       children: [
@@ -49,19 +67,23 @@ class _SearchPageState extends State<SearchPage> {
                   Expanded(
                       child: Container(
                     decoration: BoxDecoration(color: RideColors.lightGrayFair, borderRadius: BorderRadius.circular(4)),
-                    child: const TextField(
-                        decoration: InputDecoration(
-                            hintText: 'Lugar de ecuentro',
-                            fillColor: RideColors.lightGrayFair,
-                            filled: true,
-                            border: InputBorder.none,
-                            isDense: true,
-                            contentPadding: EdgeInsets.only(left: 20, top: 8, bottom: 8))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: TextField(
+                          controller: pickupController,
+                          decoration: const InputDecoration(
+                              hintText: 'Lugar de ecuentro',
+                              fillColor: RideColors.lightGrayFair,
+                              filled: true,
+                              border: InputBorder.none,
+                              isDense: true,
+                              contentPadding: EdgeInsets.only(left: 10, top: 8, bottom: 8))),
+                    ),
                   ))
                 ],
               ),
               const SizedBox(
-                width: 10.0,
+                height: 10.0,
               ),
               Row(
                 children: [
@@ -76,14 +98,19 @@ class _SearchPageState extends State<SearchPage> {
                   Expanded(
                       child: Container(
                     decoration: BoxDecoration(color: RideColors.lightGrayFair, borderRadius: BorderRadius.circular(4)),
-                    child: const TextField(
-                        decoration: InputDecoration(
-                            hintText: '¿A dónde?',
-                            fillColor: RideColors.lightGrayFair,
-                            filled: true,
-                            border: InputBorder.none,
-                            isDense: true,
-                            contentPadding: EdgeInsets.only(left: 20, top: 8, bottom: 8))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: TextField(
+                          focusNode: focusDestination,
+                          controller: destinationController,
+                          decoration: const InputDecoration(
+                              hintText: '¿A dónde?',
+                              fillColor: RideColors.lightGrayFair,
+                              filled: true,
+                              border: InputBorder.none,
+                              isDense: true,
+                              contentPadding: EdgeInsets.only(left: 10, top: 8, bottom: 8))),
+                    ),
                   ))
                 ],
               )
