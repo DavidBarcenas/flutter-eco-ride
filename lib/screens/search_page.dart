@@ -2,11 +2,13 @@ import 'package:ecoride/helpers/request.dart';
 import 'package:ecoride/providers/app_data.dart';
 import 'package:ecoride/resources/ride_colors.dart';
 import 'package:ecoride/resources/strings.dart';
+import 'package:ecoride/widgets/custom_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 
 import '../models/prediction.dart';
+import '../widgets/prediction_tile.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -20,6 +22,7 @@ class _SearchPageState extends State<SearchPage> {
   var destinationController = TextEditingController();
   var focusDestination = FocusNode();
   bool focused = false;
+  List<Prediction> destinationPredictionList = [];
 
   void setFocus() {
     if (!focused) {
@@ -35,9 +38,10 @@ class _SearchPageState extends State<SearchPage> {
       if (response == Strings.requestFailed) {
         return;
       }
-      if (response['status'] == 'ok') {
-        var predictionsJson = response['prediction'];
-        var predictionList = (predictionsJson as List).map((e) => Prediction.fromJson(e)).toList();
+      if (response['features']) {
+        var predictionsJson = response['features'];
+        var predictions = (predictionsJson as List).map((e) => Prediction.fromJson(e)).toList();
+        setState(() => destinationPredictionList = predictions);
       }
     }
   }
@@ -136,7 +140,20 @@ class _SearchPageState extends State<SearchPage> {
               )
             ]),
           ),
-        )
+        ),
+        (destinationPredictionList.isNotEmpty)
+            ? Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                child: ListView.separated(
+                  itemBuilder: ((context, index) => PredictionTile(prediction: destinationPredictionList[index])),
+                  separatorBuilder: ((BuildContext context, int index) => const CustomDivider()),
+                  itemCount: destinationPredictionList.length,
+                  shrinkWrap: true,
+                  physics: const ClampingScrollPhysics(),
+                  padding: const EdgeInsets.all(0),
+                ),
+              )
+            : Container()
       ],
     ));
   }
