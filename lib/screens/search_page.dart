@@ -1,6 +1,8 @@
+import 'package:ecoride/helpers/request.dart';
 import 'package:ecoride/providers/app_data.dart';
 import 'package:ecoride/resources/ride_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 
 class SearchPage extends StatefulWidget {
@@ -20,6 +22,16 @@ class _SearchPageState extends State<SearchPage> {
     if (!focused) {
       FocusScope.of(context).requestFocus(focusDestination);
       focused = true;
+    }
+  }
+
+  void searchPlace(String placeName) async {
+    if (placeName.length > 3) {
+      var response = await Request.getRequest(dotenv.get('PLACE_API_DOMAIN'), dotenv.get('PLACE_API_ENDPOINT'),
+          {'text': placeName, 'apiKey': dotenv.get('PLACE_API_KEY')});
+      if (response == 'failed') {
+        return;
+      }
     }
   }
 
@@ -101,6 +113,7 @@ class _SearchPageState extends State<SearchPage> {
                     child: Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: TextField(
+                          onChanged: (value) => searchPlace(value),
                           focusNode: focusDestination,
                           controller: destinationController,
                           decoration: const InputDecoration(
