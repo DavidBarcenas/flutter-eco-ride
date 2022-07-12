@@ -37,4 +37,6 @@ class Strings {
   static const String panelWork = 'Agregar trabajo';
   static const String panelHomeDefault = 'Dirección de casa';
   static const String panelWorkDefault = 'Dirección de trabajo';
+  static const String requestFailed = 'Request failed';
+  static const String requestFailedStatus = 'Request failed with status';
 }

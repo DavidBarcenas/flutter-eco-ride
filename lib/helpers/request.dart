@@ -1,3 +1,4 @@
+import 'package:ecoride/resources/strings.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
@@ -11,10 +12,10 @@ class Request {
         var jsonResponse = convert.jsonDecode(response.body);
         return jsonResponse;
       } else {
-        return 'Request failed with status: ${response.statusCode}.';
+        return '${Strings.requestFailedStatus} : ${response.statusCode}.';
       }
     } catch (e) {
-      return 'Request failed';
+      return Strings.requestFailed;
     }
   }
 }

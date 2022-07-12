@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ecoride/helpers/request.dart';
+import 'package:ecoride/resources/strings.dart';
 import 'package:geolocator/geolocator.dart';
 import '../models/reverse_geocode.dart';
 
@@ -18,7 +19,7 @@ class HelperMethods {
       'localityLanguage': 'es'
     };
     var response = await Request.getRequest('api.bigdatacloud.net', '/data/reverse-geocode-client', queryParams);
-    if (response != 'Request failed') {
+    if (response != Strings.requestFailed) {
       address = ReverseGeocode.fromJson(response);
     }
 

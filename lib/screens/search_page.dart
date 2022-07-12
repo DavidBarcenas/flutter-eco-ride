@@ -1,6 +1,7 @@
 import 'package:ecoride/helpers/request.dart';
 import 'package:ecoride/providers/app_data.dart';
 import 'package:ecoride/resources/ride_colors.dart';
+import 'package:ecoride/resources/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,7 @@ class _SearchPageState extends State<SearchPage> {
     if (placeName.length > 3) {
       var response = await Request.getRequest(dotenv.get('PLACE_API_DOMAIN'), dotenv.get('PLACE_API_ENDPOINT'),
           {'text': placeName, 'apiKey': dotenv.get('PLACE_API_KEY')});
-      if (response == 'failed') {
+      if (response == Strings.requestFailed) {
         return;
       }
     }
