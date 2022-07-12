@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 
+import '../models/prediction.dart';
+
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
 
@@ -32,6 +34,10 @@ class _SearchPageState extends State<SearchPage> {
           {'text': placeName, 'apiKey': dotenv.get('PLACE_API_KEY')});
       if (response == Strings.requestFailed) {
         return;
+      }
+      if (response['status'] == 'ok') {
+        var predictionsJson = response['prediction'];
+        var predictionList = (predictionsJson as List).map((e) => Prediction.fromJson(e)).toList();
       }
     }
   }
