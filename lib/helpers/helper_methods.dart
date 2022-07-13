@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ecoride/helpers/request.dart';
 import 'package:ecoride/resources/strings.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
 import '../models/reverse_geocode.dart';
 
@@ -14,11 +15,12 @@ class HelperMethods {
     }
 
     var queryParams = {
-      'latitude': position.latitude.toString(),
-      'longitude': position.longitude.toString(),
-      'localityLanguage': 'es'
+      'lat': position.latitude.toString(),
+      'lon': position.longitude.toString(),
+      'format': 'json',
+      'key': dotenv.get('PLACE_API_KEY')
     };
-    var response = await Request.getRequest('api.bigdatacloud.net', '/data/reverse-geocode-client', queryParams);
+    var response = await Request.getRequest(dotenv.get('PLACE_API'), dotenv.get('PLACE_API_REVERSE'), queryParams);
     if (response != Strings.requestFailed) {
       address = ReverseGeocode.fromJson(response);
     }

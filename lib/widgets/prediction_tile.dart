@@ -10,32 +10,35 @@ class PredictionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Icon(
-          Icons.location_city,
-          color: RideColors.dimText,
-        ),
-        const SizedBox(
-          width: 2.0,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              prediction.name,
-              style: const TextStyle(fontSize: 16.0),
-            ),
-            const SizedBox(
-              height: 2.0,
-            ),
-            Text(
-              prediction.street,
-              style: const TextStyle(fontSize: 12.0, color: RideColors.dimText),
-            )
-          ],
-        )
-      ],
+    return TextButton(
+      onPressed: () {},
+      child: Row(
+        children: [
+          const Icon(
+            Icons.location_city,
+            color: RideColors.dimText,
+          ),
+          const SizedBox(
+            width: 2.0,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                prediction.name,
+                style: const TextStyle(fontSize: 16.0),
+              ),
+              const SizedBox(
+                height: 2.0,
+              ),
+              Text(
+                prediction.street,
+                style: const TextStyle(fontSize: 12.0, color: RideColors.dimText),
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }

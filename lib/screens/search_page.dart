@@ -33,7 +33,7 @@ class _SearchPageState extends State<SearchPage> {
 
   void searchPlace(String placeName) async {
     if (placeName.length > 3) {
-      var response = await Request.getRequest(dotenv.get('PLACE_API_DOMAIN'), dotenv.get('PLACE_API_ENDPOINT'),
+      var response = await Request.getRequest(dotenv.get('PLACE_API'), dotenv.get('PLACE_API_ENDPOINT'),
           {'text': placeName, 'apiKey': dotenv.get('PLACE_API_KEY')});
       if (response == Strings.requestFailed) {
         return;
