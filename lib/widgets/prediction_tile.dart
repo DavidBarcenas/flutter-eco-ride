@@ -1,5 +1,8 @@
+import 'package:ecoride/models/address.dart';
 import 'package:ecoride/models/prediction.dart';
+import 'package:ecoride/providers/app_data.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../resources/ride_colors.dart';
 
@@ -11,7 +14,15 @@ class PredictionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        Address destination = Address(
+            placeName: prediction.name,
+            latitud: prediction.lat,
+            longitude: prediction.lon,
+            placeId: prediction.placeId,
+            formattedAddress: prediction.street);
+        Provider.of<AppData>(context, listen: false).updateDestinationpAddress(destination);
+      },
       child: Row(
         children: [
           const Icon(
