@@ -33,7 +33,7 @@ class _SearchPageState extends State<SearchPage> {
 
   void searchPlace(String placeName) async {
     if (placeName.length > 3) {
-      var response = await Request.getRequest(dotenv.get('PLACE_API'), dotenv.get('PLACE_API_ENDPOINT'),
+      var response = await Request.getRequest(dotenv.get('PLACE_API'), dotenv.get('PLACE_API_AUTOCOMPLETE'),
           {'text': placeName, 'apiKey': dotenv.get('PLACE_API_KEY')});
       if (response == Strings.requestFailed) {
         return;
@@ -49,7 +49,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     setFocus();
-    String address = Provider.of<AppData>(context).pickupAddress.locality;
+    String address = Provider.of<AppData>(context).pickupAddress.placeName;
     pickupController.text = address;
 
     return Scaffold(

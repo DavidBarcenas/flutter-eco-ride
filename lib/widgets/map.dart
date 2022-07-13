@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:ecoride/models/reverse_geocode.dart';
+import 'package:ecoride/models/address.dart';
 import 'package:ecoride/resources/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -54,7 +54,7 @@ class _GMapState extends State<GMap> {
     LatLng position = LatLng(currentPosition.latitude, currentPosition.longitude);
     CameraPosition cp = CameraPosition(target: position, zoom: 14.0);
     mapController.animateCamera(CameraUpdate.newCameraPosition(cp));
-    ReverseGeocode? address = await HelperMethods.findCoordsAddress(currentPosition);
+    Address? address = await HelperMethods.findCoordsAddress(currentPosition);
 
     if (address != null) {
       if (!mounted) return;

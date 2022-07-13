@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../models/reverse_geocode.dart';
+import '../models/address.dart';
 
 class AppData extends ChangeNotifier {
-  late ReverseGeocode pickupAddress;
+  late Address pickupAddress;
 
-  void updatePickupAddress(ReverseGeocode pickup) {
+  void updatePickupAddress(Address pickup) {
     pickupAddress = pickup;
     notifyListeners();
   }
