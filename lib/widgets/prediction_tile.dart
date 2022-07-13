@@ -15,18 +15,18 @@ class PredictionTile extends StatelessWidget {
       child: Row(
         children: [
           const Icon(
-            Icons.location_city,
+            Icons.location_on,
             color: RideColors.dimText,
           ),
           const SizedBox(
-            width: 2.0,
+            width: 10.0,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 prediction.name,
-                style: const TextStyle(fontSize: 16.0),
+                style: const TextStyle(fontSize: 16.0, color: RideColors.text),
               ),
               const SizedBox(
                 height: 2.0,
@@ -34,7 +34,10 @@ class PredictionTile extends StatelessWidget {
               Text(
                 prediction.street,
                 style: const TextStyle(fontSize: 12.0, color: RideColors.dimText),
-              )
+              ),
+              const SizedBox(
+                height: 2.0,
+              ),
             ],
           )
         ],
