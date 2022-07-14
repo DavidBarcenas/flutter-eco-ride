@@ -53,7 +53,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 
-        manifestPlaceholders += [API_KEY: "$System.env.ANDROID_API_KEY"]
+        manifestPlaceholders += [API_KEY: "$process.env.ANDROID_API_KEY"]
     }
 
     buildTypes {
