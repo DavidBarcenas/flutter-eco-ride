@@ -39,7 +39,6 @@ class _DestinationSearchPanelState extends State<DestinationSearchPanel> {
     var details = await HelperMethods.getDirectionDetails(pickupLatLng, destinationLatLng);
     if (!mounted) return;
     Navigator.pop(context);
-    print(details!.points);
   }
 
   @override
