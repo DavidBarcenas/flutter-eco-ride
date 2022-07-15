@@ -2,15 +2,45 @@ import 'dart:io';
 
 import 'package:ecoride/resources/strings.dart';
 import 'package:ecoride/screens/search_page.dart';
+import 'package:ecoride/widgets/progress_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:provider/provider.dart';
 
+import '../helpers/helper_methods.dart';
+import '../providers/app_data.dart';
 import '../resources/ride_colors.dart';
 import 'custom_divider.dart';
 
-class DestinationSearchPanel extends StatelessWidget {
-  DestinationSearchPanel({Key? key}) : super(key: key);
+class DestinationSearchPanel extends StatefulWidget {
+  const DestinationSearchPanel({Key? key}) : super(key: key);
+
+  @override
+  State<DestinationSearchPanel> createState() => _DestinationSearchPanelState();
+}
+
+class _DestinationSearchPanelState extends State<DestinationSearchPanel> {
   final double searchPanelHeight = (Platform.isIOS) ? 300 : 275;
+
+  Future<void> getDirection() async {
+    var pickup = Provider.of<AppData>(context, listen: false).pickupAddress;
+    var destination = Provider.of<AppData>(context, listen: false).destinationAddress;
+    var pickupLatLng = LatLng(pickup.latitud, pickup.longitude);
+    var destinationLatLng = LatLng(destination.latitud, destination.longitude);
+
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) => const ProgressDialog(
+              text: 'Espera por favor...',
+            ));
+
+    var details = await HelperMethods.getDirectionDetails(pickupLatLng, destinationLatLng);
+    if (!mounted) return;
+    Navigator.pop(context);
+    print(details!.points);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +79,13 @@ class DestinationSearchPanel extends StatelessWidget {
                 height: 20.0,
               ),
               GestureDetector(
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage())),
+                onTap: () async {
+                  var response =
+                      await Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage()));
+                  if (response == 'getirection') {
+                    await getDirection();
+                  }
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.grey[100],

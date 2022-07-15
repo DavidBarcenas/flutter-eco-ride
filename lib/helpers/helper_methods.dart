@@ -32,7 +32,7 @@ class HelperMethods {
 
   static Future<DirectionDetails?> getDirectionDetails(LatLng startPosition, LatLng endPosition) async {
     var startCoords = '${startPosition.latitude}, ${startPosition.longitude}';
-    var endCoords = '${startPosition.latitude}, ${startPosition.longitude}';
+    var endCoords = '${endPosition.latitude}, ${endPosition.longitude}';
     var queryParams = {'waypoints': '$startCoords|$endCoords', 'mode': 'drive', 'apiKey': dotenv.get('PLACE_API_KEY')};
     var response = await Request.getRequest(dotenv.get('PLACE_API'), dotenv.get('PLACE_API_ROUTING'), queryParams);
 

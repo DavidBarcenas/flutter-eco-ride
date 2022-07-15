@@ -22,6 +22,7 @@ class PredictionTile extends StatelessWidget {
             placeId: prediction.placeId,
             formattedAddress: prediction.street);
         Provider.of<AppData>(context, listen: false).updateDestinationpAddress(destination);
+        Navigator.pop(context, 'getDirection');
       },
       child: Row(
         children: [
