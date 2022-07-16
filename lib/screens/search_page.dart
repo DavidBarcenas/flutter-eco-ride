@@ -38,7 +38,7 @@ class _SearchPageState extends State<SearchPage> {
       if (response == Strings.requestFailed) {
         return;
       }
-      if (response['features']) {
+      if ((response['features'] as List).isNotEmpty) {
         var predictionsJson = response['features'];
         var predictions = (predictionsJson as List).map((e) => Prediction.fromJson(e)).toList();
         setState(() => destinationPredictionList = predictions);

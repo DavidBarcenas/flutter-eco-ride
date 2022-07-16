@@ -10,7 +10,7 @@ class Prediction {
   factory Prediction.fromJson(Map<String, dynamic> json) => Prediction(
       placeId: json['properties']['place_id'],
       name: json['properties']['name'],
-      street: json['properties']['street'],
+      street: json['properties']['formatted'],
       lat: json['properties']['lat'],
       lon: json['properties']['lon']);
 }
