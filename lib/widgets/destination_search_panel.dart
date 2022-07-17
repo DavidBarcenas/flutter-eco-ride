@@ -38,6 +38,9 @@ class _DestinationSearchPanelState extends State<DestinationSearchPanel> {
 
     var details = await HelperMethods.getDirectionDetails(pickupLatLng, destinationLatLng);
     if (!mounted) return;
+    if (details?.points != null) {
+      Provider.of<AppData>(context, listen: false).updateWaypoints(details!.points);
+    }
     Navigator.pop(context);
   }
 
@@ -81,7 +84,7 @@ class _DestinationSearchPanelState extends State<DestinationSearchPanel> {
                 onTap: () async {
                   var response =
                       await Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage()));
-                  if (response == 'getirection') {
+                  if (response == 'getDirection') {
                     await getDirection();
                   }
                 },

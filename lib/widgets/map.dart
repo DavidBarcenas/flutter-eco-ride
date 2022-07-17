@@ -22,6 +22,8 @@ class _GMapState extends State<GMap> {
   final Completer<GoogleMapController> _controller = Completer();
   late GoogleMapController mapController;
   double mapBottomPadding = 0;
+  late List<LatLng> polylineCoords;
+  final Set<Polyline> _polylines = {};
 
   static const CameraPosition _cameraPosition = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
@@ -30,9 +32,26 @@ class _GMapState extends State<GMap> {
 
   @override
   Widget build(BuildContext context) {
+    polylineCoords = Provider.of<AppData>(context, listen: false).waypoints;
+    _polylines.clear;
+
+    setState(() {
+      Polyline polyline = Polyline(
+          polylineId: const PolylineId("polylineId"),
+          color: const Color.fromARGB(255, 95, 109, 237),
+          points: polylineCoords,
+          jointType: JointType.round,
+          width: 4,
+          startCap: Cap.roundCap,
+          endCap: Cap.roundCap,
+          geodesic: true);
+      _polylines.add(polyline);
+    });
+
     return GoogleMap(
         padding: EdgeInsets.only(bottom: mapBottomPadding),
         mapType: MapType.normal,
+        polylines: _polylines,
         myLocationButtonEnabled: true,
         initialCameraPosition: _cameraPosition,
         myLocationEnabled: true,
