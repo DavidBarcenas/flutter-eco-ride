@@ -3,16 +3,15 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 class Request {
-  static Future<dynamic> getRequest(String domain, String path, Map<String, dynamic> queryParams) async {
+  static Future<dynamic> getRequest(String url) async {
     try {
-      var url = Uri.https(domain, path, queryParams);
-      http.Response response = await http.get(url);
+      http.Response response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
         var jsonResponse = convert.jsonDecode(response.body);
         return jsonResponse;
       } else {
-        return '${Strings.requestFailedStatus} : ${response.statusCode}.';
+        return Strings.requestFailed;
       }
     } catch (e) {
       return Strings.requestFailed;
