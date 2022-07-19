@@ -15,14 +15,9 @@ class HelperMethods {
     if (connectivityResult != ConnectivityResult.mobile && connectivityResult != ConnectivityResult.wifi) {
       return address;
     }
-
-    var queryParams = {
-      'lat': position.latitude.toString(),
-      'lon': position.longitude.toString(),
-      'format': 'json',
-      'apiKey': dotenv.get('PLACE_API_KEY')
-    };
-    var response = await Request.getRequest(dotenv.get('PLACE_API'), dotenv.get('PLACE_API_REVERSE'), queryParams);
+    var url = '${dotenv.get('PLACE_API')}${dotenv.get('PLACE_API_REVERSE')}';
+    var params = '?lat=${position.latitude}&lon=${position.longitude}&format=json&apiKey${dotenv.get('PLACE_API_KEY')}';
+    var response = await Request.getRequest('$url$params');
     if (response != response['results'].length > 0) {
       address = Address.fromJson(response['results'][0]);
     }
@@ -33,8 +28,9 @@ class HelperMethods {
   static Future<DirectionDetails?> getDirectionDetails(LatLng startPosition, LatLng endPosition) async {
     var startCoords = '${startPosition.latitude}, ${startPosition.longitude}';
     var endCoords = '${endPosition.latitude}, ${endPosition.longitude}';
-    var queryParams = {'waypoints': '$startCoords|$endCoords', 'mode': 'drive', 'apiKey': dotenv.get('PLACE_API_KEY')};
-    var response = await Request.getRequest(dotenv.get('PLACE_API'), dotenv.get('PLACE_API_ROUTING'), queryParams);
+    var url = '${dotenv.get('PLACE_API')}${dotenv.get('PLACE_API_ROUTING')}';
+    var params = '?waypoints=$startCoords|$endCoords&mode=drive&apiKey=${dotenv.get('PLACE_API_KEY')}';
+    var response = await Request.getRequest('$url$params');
 
     if (response == Strings.requestFailed) {
       return null;
