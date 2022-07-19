@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:line_icons/line_icons.dart';
-import 'dart:io';
 
 import '../widgets/destination_search_panel.dart';
 import '../widgets/map.dart';
@@ -19,10 +16,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  late GoogleMapController mapController;
-  double mapBottomPadding = 0;
-  double searchPanelHeight = (Platform.isIOS) ? 300 : 275;
-  late Position userPosition;
 
   @override
   Widget build(BuildContext context) {

@@ -32,7 +32,7 @@ class _GMapState extends State<GMap> {
 
   @override
   Widget build(BuildContext context) {
-    polylineCoords = Provider.of<AppData>(context, listen: false).waypoints;
+    polylineCoords = Provider.of<AppData>(context, listen: true).waypoints;
     _polylines.clear;
 
     setState(() {
