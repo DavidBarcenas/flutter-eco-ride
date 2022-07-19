@@ -33,24 +33,28 @@ class PredictionTile extends StatelessWidget {
           const SizedBox(
             width: 10.0,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                prediction.name,
-                style: const TextStyle(fontSize: 16.0, color: RideColors.text),
-              ),
-              const SizedBox(
-                height: 2.0,
-              ),
-              Text(
-                prediction.street,
-                style: const TextStyle(fontSize: 12.0, color: RideColors.dimText),
-              ),
-              const SizedBox(
-                height: 2.0,
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  prediction.name,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontSize: 16.0, color: RideColors.text),
+                ),
+                const SizedBox(
+                  height: 2.0,
+                ),
+                Text(
+                  prediction.street,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontSize: 12.0, color: RideColors.dimText),
+                ),
+                const SizedBox(
+                  height: 2.0,
+                ),
+              ],
+            ),
           )
         ],
       ),

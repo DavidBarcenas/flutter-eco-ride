@@ -8,8 +8,7 @@ class DirectionDetails {
   DirectionDetails({required this.distance, required this.duration, required this.points});
 
   factory DirectionDetails.fromJson(Map<String, dynamic> json) => DirectionDetails(
-      distance: json['properties']['distance'],
-      duration: json['properties']['time'],
-      points:
-          (json['properties']['waypoints'] as List).map((e) => LatLng(e['location'][1], e['location'][0])).toList());
+      distance: json['properties']['distance'] ?? '',
+      duration: json['properties']['time'] ?? '',
+      points: (json['properties']['waypoints'] as List).map((e) => LatLng(e['lat'], e['lon'])).toList());
 }

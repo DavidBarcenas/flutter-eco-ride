@@ -33,7 +33,7 @@ class _SearchPageState extends State<SearchPage> {
 
   void searchPlace(String placeName) async {
     if (placeName.length > 3) {
-      var url = "${dotenv.get('PLACE_API')}${dotenv.get('PLACE_API_AUTOCOMP,LETE')}";
+      var url = "${dotenv.get('PLACE_API')}${dotenv.get('PLACE_API_AUTOCOMPLETE')}";
       var params = '?text=$placeName&apiKey=${dotenv.get('PLACE_API_KEY')}';
       var response = await Request.getRequest('$url$params');
       if (response == Strings.requestFailed) {
