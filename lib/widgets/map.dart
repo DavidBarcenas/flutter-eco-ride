@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:ecoride/models/address.dart';
+import 'package:ecoride/resources/ride_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -23,6 +24,8 @@ class _GMapState extends State<GMap> {
   double mapBottomPadding = 0;
   late List<LatLng> polylineCoords;
   final Set<Polyline> _polylines = {};
+  Set<Marker> _markers = {};
+  Set<Circle> _circles = {};
 
   static const CameraPosition _cameraPosition = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
@@ -54,9 +57,7 @@ class _GMapState extends State<GMap> {
       var pickupLatLng = LatLng(pickup.latitud, pickup.longitude);
       var destinationLatLng = LatLng(destination.latitud, destination.longitude);
       if (pickupLatLng.latitude > destinationLatLng.latitude && pickupLatLng.longitude > destinationLatLng.longitude) {
-        bounds = LatLngBounds(
-            southwest: LatLng(destinationLatLng.latitude, destinationLatLng.longitude),
-            northeast: LatLng(pickupLatLng.latitude, pickupLatLng.longitude));
+        bounds = LatLngBounds(southwest: destinationLatLng, northeast: pickupLatLng);
       } else if (pickupLatLng.longitude > destinationLatLng.longitude) {
         bounds = LatLngBounds(
             southwest: LatLng(pickupLatLng.latitude, destinationLatLng.longitude),
@@ -66,17 +67,48 @@ class _GMapState extends State<GMap> {
             southwest: LatLng(destinationLatLng.latitude, pickupLatLng.longitude),
             northeast: LatLng(pickupLatLng.latitude, destinationLatLng.longitude));
       } else {
-        bounds = LatLngBounds(
-            southwest: LatLng(pickupLatLng.latitude, pickupLatLng.longitude),
-            northeast: LatLng(destinationLatLng.latitude, destinationLatLng.longitude));
+        bounds = LatLngBounds(southwest: pickupLatLng, northeast: destinationLatLng);
       }
       mapController?.animateCamera(CameraUpdate.newLatLngBounds(bounds, 70));
+      Marker pickupMarker = Marker(
+          markerId: const MarkerId("m_pickup"),
+          position: pickupLatLng,
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+          infoWindow: InfoWindow(title: pickup.placeName, snippet: 'My location'));
+      Marker destinationMarker = Marker(
+          markerId: const MarkerId("m_destination"),
+          position: destinationLatLng,
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+          infoWindow: InfoWindow(title: pickup.placeName, snippet: 'Destination'));
+      Circle pickupCircle = Circle(
+          circleId: const CircleId('c_pickup'),
+          strokeColor: Colors.green,
+          strokeWidth: 3,
+          radius: 12,
+          center: pickupLatLng,
+          fillColor: RideColors.green);
+      Circle destinationCircle = Circle(
+          circleId: const CircleId('c_destination'),
+          strokeColor: Colors.blue,
+          strokeWidth: 3,
+          radius: 12,
+          center: pickupLatLng,
+          fillColor: RideColors.accentPurple);
+
+      setState(() {
+        _markers.add(pickupMarker);
+        _markers.add(destinationMarker);
+        _circles.add(pickupCircle);
+        _circles.add(destinationCircle);
+      });
     }
 
     return GoogleMap(
         padding: EdgeInsets.only(bottom: mapBottomPadding),
         mapType: MapType.normal,
         polylines: _polylines,
+        markers: _markers,
+        circles: _circles,
         myLocationButtonEnabled: true,
         initialCameraPosition: _cameraPosition,
         myLocationEnabled: true,
