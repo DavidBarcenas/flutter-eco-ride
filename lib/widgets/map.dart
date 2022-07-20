@@ -32,8 +32,6 @@ class _GMapState extends State<GMap> {
   @override
   Widget build(BuildContext context) {
     polylineCoords = Provider.of<AppData>(context, listen: true).waypoints;
-    var pickup = Provider.of<AppData>(context, listen: false).pickupAddress;
-    var destination = Provider.of<AppData>(context, listen: false).destinationAddress;
     _polylines.clear;
 
     setState(() {
@@ -50,24 +48,30 @@ class _GMapState extends State<GMap> {
     });
 
     LatLngBounds bounds;
-    if (pickup!.latitud > destination!.latitud && pickup.longitude > destination.longitude) {
-      bounds = LatLngBounds(
-          southwest: LatLng(destination.latitud, destination.longitude),
-          northeast: LatLng(pickup.latitud, pickup.longitude));
-    } else if (pickup.longitude > destination.longitude) {
-      bounds = LatLngBounds(
-          southwest: LatLng(pickup.latitud, destination.longitude),
-          northeast: LatLng(destination.latitud, pickup.longitude));
-    } else if (pickup.latitud > destination.latitud) {
-      bounds = LatLngBounds(
-          southwest: LatLng(destination.latitud, pickup.longitude),
-          northeast: LatLng(pickup.latitud, destination.longitude));
-    } else {
-      bounds = LatLngBounds(
-          southwest: LatLng(pickup.latitud, pickup.longitude),
-          northeast: LatLng(destination.latitud, destination.longitude));
+    if (polylineCoords.isNotEmpty) {
+      var pickup = Provider.of<AppData>(context, listen: false).pickupAddress;
+      var destination = Provider.of<AppData>(context, listen: false).destinationAddress;
+      var pickupLatLng = LatLng(pickup.latitud, pickup.longitude);
+      var destinationLatLng = LatLng(destination.latitud, destination.longitude);
+      if (pickupLatLng.latitude > destinationLatLng.latitude && pickupLatLng.longitude > destinationLatLng.longitude) {
+        bounds = LatLngBounds(
+            southwest: LatLng(destinationLatLng.latitude, destinationLatLng.longitude),
+            northeast: LatLng(pickupLatLng.latitude, pickupLatLng.longitude));
+      } else if (pickupLatLng.longitude > destinationLatLng.longitude) {
+        bounds = LatLngBounds(
+            southwest: LatLng(pickupLatLng.latitude, destinationLatLng.longitude),
+            northeast: LatLng(destinationLatLng.latitude, pickupLatLng.longitude));
+      } else if (pickupLatLng.latitude > destinationLatLng.latitude) {
+        bounds = LatLngBounds(
+            southwest: LatLng(destinationLatLng.latitude, pickupLatLng.longitude),
+            northeast: LatLng(pickupLatLng.latitude, destinationLatLng.longitude));
+      } else {
+        bounds = LatLngBounds(
+            southwest: LatLng(pickupLatLng.latitude, pickupLatLng.longitude),
+            northeast: LatLng(destinationLatLng.latitude, destinationLatLng.longitude));
+      }
+      mapController?.animateCamera(CameraUpdate.newLatLngBounds(bounds, 70));
     }
-    mapController?.animateCamera(CameraUpdate.newLatLngBounds(bounds, 70));
 
     return GoogleMap(
         padding: EdgeInsets.only(bottom: mapBottomPadding),

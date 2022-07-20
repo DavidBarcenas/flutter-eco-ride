@@ -26,8 +26,8 @@ class _DestinationSearchPanelState extends State<DestinationSearchPanel> {
   Future<void> getDirection() async {
     var pickup = Provider.of<AppData>(context, listen: false).pickupAddress;
     var destination = Provider.of<AppData>(context, listen: false).destinationAddress;
-    var pickupLatLng = LatLng(pickup!.latitud, pickup.longitude);
-    var destinationLatLng = LatLng(destination!.latitud, destination.longitude);
+    var pickupLatLng = LatLng(pickup.latitud, pickup.longitude);
+    var destinationLatLng = LatLng(destination.latitud, destination.longitude);
 
     showDialog(
         context: context,
