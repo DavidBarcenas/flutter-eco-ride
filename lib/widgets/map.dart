@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:ecoride/models/address.dart';
-import 'package:ecoride/resources/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -20,7 +19,7 @@ class GMap extends StatefulWidget {
 
 class _GMapState extends State<GMap> {
   final Completer<GoogleMapController> _controller = Completer();
-  late GoogleMapController mapController;
+  GoogleMapController? mapController;
   double mapBottomPadding = 0;
   late List<LatLng> polylineCoords;
   final Set<Polyline> _polylines = {};
@@ -33,6 +32,8 @@ class _GMapState extends State<GMap> {
   @override
   Widget build(BuildContext context) {
     polylineCoords = Provider.of<AppData>(context, listen: true).waypoints;
+    var pickup = Provider.of<AppData>(context, listen: false).pickupAddress;
+    var destination = Provider.of<AppData>(context, listen: false).destinationAddress;
     _polylines.clear;
 
     setState(() {
@@ -47,6 +48,26 @@ class _GMapState extends State<GMap> {
           geodesic: true);
       _polylines.add(polyline);
     });
+
+    LatLngBounds bounds;
+    if (pickup.latitud > destination.latitud && pickup.longitude > destination.longitude) {
+      bounds = LatLngBounds(
+          southwest: LatLng(destination.latitud, destination.longitude),
+          northeast: LatLng(pickup.latitud, pickup.longitude));
+    } else if (pickup.longitude > destination.longitude) {
+      bounds = LatLngBounds(
+          southwest: LatLng(pickup.latitud, destination.longitude),
+          northeast: LatLng(destination.latitud, pickup.longitude));
+    } else if (pickup.latitud > destination.latitud) {
+      bounds = LatLngBounds(
+          southwest: LatLng(destination.latitud, pickup.longitude),
+          northeast: LatLng(pickup.latitud, destination.longitude));
+    } else {
+      bounds = LatLngBounds(
+          southwest: LatLng(pickup.latitud, pickup.longitude),
+          northeast: LatLng(destination.latitud, destination.longitude));
+    }
+    mapController?.animateCamera(CameraUpdate.newLatLngBounds(bounds, 70));
 
     return GoogleMap(
         padding: EdgeInsets.only(bottom: mapBottomPadding),
@@ -72,7 +93,7 @@ class _GMapState extends State<GMap> {
     Position currentPosition = await HelperMethods.determinePosition();
     LatLng position = LatLng(currentPosition.latitude, currentPosition.longitude);
     CameraPosition cp = CameraPosition(target: position, zoom: 14.0);
-    mapController.animateCamera(CameraUpdate.newCameraPosition(cp));
+    mapController?.animateCamera(CameraUpdate.newCameraPosition(cp));
     Address? address = await HelperMethods.findCoordsAddress(currentPosition);
 
     if (address != null) {
