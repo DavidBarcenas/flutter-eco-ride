@@ -50,7 +50,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     setFocus();
-    String address = Provider.of<AppData>(context).pickupAddress.placeName;
+    String address = Provider.of<AppData>(context).pickupAddress?.placeName ?? '';
     pickupController.text = address;
 
     return Scaffold(

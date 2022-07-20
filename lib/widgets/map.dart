@@ -50,7 +50,7 @@ class _GMapState extends State<GMap> {
     });
 
     LatLngBounds bounds;
-    if (pickup.latitud > destination.latitud && pickup.longitude > destination.longitude) {
+    if (pickup!.latitud > destination!.latitud && pickup.longitude > destination.longitude) {
       bounds = LatLngBounds(
           southwest: LatLng(destination.latitud, destination.longitude),
           northeast: LatLng(pickup.latitud, pickup.longitude));

@@ -3,8 +3,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../models/address.dart';
 
 class AppData extends ChangeNotifier {
-  late Address pickupAddress;
-  late Address destinationAddress;
+  late Address? pickupAddress;
+  late Address? destinationAddress;
   List<LatLng> waypoints = [];
 
   void updatePickupAddress(Address pickup) {
