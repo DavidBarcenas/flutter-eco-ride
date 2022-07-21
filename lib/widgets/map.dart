@@ -24,8 +24,8 @@ class _GMapState extends State<GMap> {
   double mapBottomPadding = 0;
   late List<LatLng> polylineCoords;
   final Set<Polyline> _polylines = {};
-  Set<Marker> _markers = {};
-  Set<Circle> _circles = {};
+  final Set<Marker> _markers = {};
+  final Set<Circle> _circles = {};
 
   static const CameraPosition _cameraPosition = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
@@ -74,12 +74,12 @@ class _GMapState extends State<GMap> {
           markerId: const MarkerId("m_pickup"),
           position: pickupLatLng,
           icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
-          infoWindow: InfoWindow(title: pickup.placeName, snippet: 'My location'));
+          infoWindow: InfoWindow(title: pickup.placeName, snippet: 'Mi Ubicación'));
       Marker destinationMarker = Marker(
           markerId: const MarkerId("m_destination"),
           position: destinationLatLng,
           icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-          infoWindow: InfoWindow(title: pickup.placeName, snippet: 'Destination'));
+          infoWindow: InfoWindow(title: pickup.placeName, snippet: 'Destino'));
       Circle pickupCircle = Circle(
           circleId: const CircleId('c_pickup'),
           strokeColor: Colors.green,
