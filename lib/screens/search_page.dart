@@ -1,6 +1,5 @@
 import 'package:ecoride/helpers/request.dart';
 import 'package:ecoride/providers/app_data.dart';
-import 'package:ecoride/resources/ride_colors.dart';
 import 'package:ecoride/resources/strings.dart';
 import 'package:ecoride/widgets/custom_divider.dart';
 import 'package:flutter/material.dart';
@@ -91,19 +90,18 @@ class _SearchPageState extends State<SearchPage> {
                       ),
                       Expanded(
                           child: Container(
-                        decoration:
-                            BoxDecoration(color: RideColors.lightGrayFair, borderRadius: BorderRadius.circular(4)),
+                        decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(4)),
                         child: Padding(
                           padding: const EdgeInsets.all(2.0),
                           child: TextField(
                               controller: pickupController,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                   hintText: 'Lugar de ecuentro',
-                                  fillColor: RideColors.lightGrayFair,
+                                  fillColor: Colors.grey[100],
                                   filled: true,
                                   border: InputBorder.none,
                                   isDense: true,
-                                  contentPadding: EdgeInsets.only(left: 10, top: 8, bottom: 8))),
+                                  contentPadding: const EdgeInsets.only(left: 10, top: 8, bottom: 8))),
                         ),
                       ))
                     ],
@@ -123,21 +121,20 @@ class _SearchPageState extends State<SearchPage> {
                       ),
                       Expanded(
                           child: Container(
-                        decoration:
-                            BoxDecoration(color: RideColors.lightGrayFair, borderRadius: BorderRadius.circular(4)),
+                        decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(4)),
                         child: Padding(
                           padding: const EdgeInsets.all(2.0),
                           child: TextField(
                               onChanged: (value) => searchPlace(value),
                               focusNode: focusDestination,
                               controller: destinationController,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                   hintText: '¿A dónde?',
-                                  fillColor: RideColors.lightGrayFair,
+                                  fillColor: Colors.grey[100],
                                   filled: true,
                                   border: InputBorder.none,
                                   isDense: true,
-                                  contentPadding: EdgeInsets.only(left: 10, top: 8, bottom: 8))),
+                                  contentPadding: const EdgeInsets.only(left: 10, top: 8, bottom: 8))),
                         ),
                       ))
                     ],
