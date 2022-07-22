@@ -12,7 +12,8 @@ import '../helpers/helper_methods.dart';
 import '../providers/app_data.dart';
 
 class GMap extends StatefulWidget {
-  const GMap({Key? key}) : super(key: key);
+  double mapBottomPadding;
+  GMap({Key? key, required this.mapBottomPadding}) : super(key: key);
 
   @override
   State<GMap> createState() => _GMapState();
@@ -21,7 +22,6 @@ class GMap extends StatefulWidget {
 class _GMapState extends State<GMap> {
   final Completer<GoogleMapController> _controller = Completer();
   GoogleMapController? mapController;
-  double mapBottomPadding = 0;
   late List<LatLng> polylineCoords;
   final Set<Polyline> _polylines = {};
   final Set<Marker> _markers = {};
@@ -104,7 +104,7 @@ class _GMapState extends State<GMap> {
     }
 
     return GoogleMap(
-        padding: EdgeInsets.only(bottom: mapBottomPadding),
+        padding: EdgeInsets.only(bottom: widget.mapBottomPadding),
         mapType: MapType.normal,
         polylines: _polylines,
         markers: _markers,
@@ -119,7 +119,7 @@ class _GMapState extends State<GMap> {
           mapController = controller;
 
           setState(() {
-            mapBottomPadding = (Platform.isIOS) ? 270 : 280;
+            widget.mapBottomPadding = (Platform.isIOS) ? 270 : 280;
           });
           setupPositionLocator();
         });

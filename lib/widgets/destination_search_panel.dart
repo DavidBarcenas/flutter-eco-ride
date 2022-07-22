@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:ecoride/resources/strings.dart';
 import 'package:ecoride/screens/search_page.dart';
 import 'package:ecoride/widgets/progress_dialog.dart';
@@ -14,15 +12,15 @@ import '../resources/ride_colors.dart';
 import 'custom_divider.dart';
 
 class DestinationSearchPanel extends StatefulWidget {
-  const DestinationSearchPanel({Key? key}) : super(key: key);
+  final double panelHeight;
+  final Function showPanel;
+  const DestinationSearchPanel({Key? key, required this.panelHeight, required this.showPanel}) : super(key: key);
 
   @override
   State<DestinationSearchPanel> createState() => _DestinationSearchPanelState();
 }
 
 class _DestinationSearchPanelState extends State<DestinationSearchPanel> {
-  final double searchPanelHeight = (Platform.isIOS) ? 300 : 275;
-
   Future<void> getDirection() async {
     var pickup = Provider.of<AppData>(context, listen: false).pickupAddress;
     var destination = Provider.of<AppData>(context, listen: false).destinationAddress;
@@ -51,7 +49,7 @@ class _DestinationSearchPanelState extends State<DestinationSearchPanel> {
       right: 0,
       bottom: 0,
       child: Container(
-        height: searchPanelHeight,
+        height: widget.panelHeight,
         decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
@@ -86,6 +84,7 @@ class _DestinationSearchPanelState extends State<DestinationSearchPanel> {
                       await Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage()));
                   if (response == 'getDirection') {
                     await getDirection();
+                    widget.showPanel();
                   }
                 },
                 child: Container(
