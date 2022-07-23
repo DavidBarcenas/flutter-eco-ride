@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: const [
-                                    Text('Taxi', style: TextStyle(fontSize: 18, fontFamily: 'Brand-Bold')),
+                                    Text('Roberto Acosta', style: TextStyle(fontSize: 18, fontFamily: 'Brand-Bold')),
                                     Text('14km', style: TextStyle(fontSize: 16, color: RideColors.textLight)),
                                   ],
                                 ),
