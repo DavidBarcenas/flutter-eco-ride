@@ -48,7 +48,7 @@ class NavigationDrawer extends StatelessWidget {
                             ),
                             Text(
                               Strings.viewProfile,
-                              style: TextStyle(color: RideColors.blue),
+                              style: TextStyle(color: Colors.grey),
                             )
                           ],
                         ),
@@ -75,7 +75,7 @@ class NavigationDrawer extends StatelessWidget {
       minLeadingWidth: 20.0,
       leading: Icon(
         icon,
-        color: RideColors.blue,
+        color: RideColors.green,
       ),
       title: Text(
         name,
