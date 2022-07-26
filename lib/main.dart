@@ -1,5 +1,4 @@
 import 'package:ecoride/providers/app_data.dart';
-import 'package:ecoride/resources/ride_colors.dart';
 import 'package:ecoride/resources/strings.dart';
 import 'package:ecoride/screens/home_page.dart';
 import 'package:ecoride/screens/login_page.dart';
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.grey,
           ),
-          initialRoute: LoginPage.id,
+          initialRoute: HomePage.id,
           routes: {
             RegisterPage.id: ((context) => const RegisterPage()),
             LoginPage.id: ((context) => const LoginPage()),

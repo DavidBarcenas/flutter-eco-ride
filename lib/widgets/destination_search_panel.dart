@@ -65,10 +65,6 @@ class _DestinationSearchPanelState extends State<DestinationSearchPanel> {
                 const SizedBox(
                   height: 5,
                 ),
-                const Text(
-                  Strings.panelTitle,
-                  style: TextStyle(fontSize: 10),
-                ),
                 const SizedBox(
                   height: 5,
                 ),
@@ -98,7 +94,7 @@ class _DestinationSearchPanelState extends State<DestinationSearchPanel> {
                       child: Row(children: const [
                         Icon(
                           Icons.search,
-                          color: Colors.blueAccent,
+                          color: Colors.black,
                         ),
                         SizedBox(
                           width: 10.0,
@@ -131,9 +127,13 @@ class _DestinationSearchPanelState extends State<DestinationSearchPanel> {
   Widget _panelItem(IconData icon, String title, String address) {
     return Row(
       children: [
-        Icon(
-          icon,
-          color: Colors.blueAccent,
+        Container(
+          padding: const EdgeInsets.all(5.0),
+          decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(50.0)),
+          child: Icon(
+            icon,
+            color: RideColors.green,
+          ),
         ),
         const SizedBox(
           width: 12,
@@ -141,13 +141,13 @@ class _DestinationSearchPanelState extends State<DestinationSearchPanel> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title),
+            Text(title, style: const TextStyle(color: Colors.grey, fontSize: 12)),
             const SizedBox(
               height: 3,
             ),
             Text(
               address,
-              style: const TextStyle(color: RideColors.dimText, fontSize: 11),
+              style: const TextStyle(color: Colors.black, fontSize: 14),
             )
           ],
         ),
