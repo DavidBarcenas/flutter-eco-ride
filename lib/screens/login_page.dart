@@ -92,7 +92,8 @@ class _LoginPageState extends State<LoginPage> {
                     const Logo(),
                     const SizedBox(height: 40),
                     const Text(Strings.signIn,
-                        textAlign: TextAlign.center, style: TextStyle(fontFamily: 'Brand-Bold', fontSize: 25)),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontFamily: 'Brand-Bold', fontSize: 25, color: RideColors.blue)),
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
