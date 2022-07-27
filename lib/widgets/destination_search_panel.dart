@@ -107,7 +107,7 @@ class _DestinationSearchPanelState extends State<DestinationSearchPanel> {
                 const SizedBox(
                   height: 22.0,
                 ),
-                _panelItem(LineIcons.home, Strings.panelHome, Strings.panelHomeDefault),
+                _panelItem(LineIcons.home, "Casa", "Centro Histórico de la Cdad. de México"),
                 const SizedBox(
                   height: 10.0,
                 ),
@@ -115,7 +115,7 @@ class _DestinationSearchPanelState extends State<DestinationSearchPanel> {
                 const SizedBox(
                   height: 16.0,
                 ),
-                _panelItem(LineIcons.building, Strings.panelWork, Strings.panelWorkDefault)
+                _panelItem(LineIcons.building, "Oficina", "Av. Paseo de la Reforma 222, CDMX")
               ],
             ),
           ),
@@ -129,10 +129,10 @@ class _DestinationSearchPanelState extends State<DestinationSearchPanel> {
       children: [
         Container(
           padding: const EdgeInsets.all(5.0),
-          decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(50.0)),
+          decoration: BoxDecoration(color: RideColors.green, borderRadius: BorderRadius.circular(50.0)),
           child: Icon(
             icon,
-            color: RideColors.green,
+            color: Colors.white,
           ),
         ),
         const SizedBox(
@@ -141,7 +141,7 @@ class _DestinationSearchPanelState extends State<DestinationSearchPanel> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: const TextStyle(color: Colors.grey, fontSize: 12)),
+            Text(title, style: const TextStyle(color: RideColors.textSemiLight, fontSize: 12)),
             const SizedBox(
               height: 3,
             ),
