@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void showDetailSheet() {
     setState(() {
       searchPanelHeight = 0;
-      detailHeight = (Platform.isIOS) ? 260 : 235;
+      detailHeight = (Platform.isIOS) ? 210 : 235;
       mapBottomPadding = (Platform.isIOS) ? 230 : 240;
     });
   }
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       children: [
                         Container(
                           width: double.infinity,
-                          color: Colors.blue[50],
+                          color: Colors.green[50],
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: Row(
@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   child: Container(),
                                 ),
                                 const Text(
-                                  '\$52',
+                                  '\$25',
                                   style: TextStyle(fontSize: 18, fontFamily: 'Brand-Bold'),
                                 )
                               ],
@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           ),
                         ),
                         const SizedBox(
-                          height: 22,
+                          height: 25,
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),

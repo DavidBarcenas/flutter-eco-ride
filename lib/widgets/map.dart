@@ -40,7 +40,7 @@ class _GMapState extends State<GMap> {
     setState(() {
       Polyline polyline = Polyline(
           polylineId: const PolylineId("polylineId"),
-          color: const Color.fromARGB(255, 95, 109, 237),
+          color: Colors.black,
           points: polylineCoords,
           jointType: JointType.round,
           width: 4,
@@ -78,22 +78,22 @@ class _GMapState extends State<GMap> {
       Marker destinationMarker = Marker(
           markerId: const MarkerId("m_destination"),
           position: destinationLatLng,
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
           infoWindow: InfoWindow(title: pickup.placeName, snippet: 'Destino'));
       Circle pickupCircle = Circle(
           circleId: const CircleId('c_pickup'),
-          strokeColor: Colors.green,
+          strokeColor: RideColors.green,
           strokeWidth: 3,
           radius: 12,
           center: pickupLatLng,
           fillColor: RideColors.green);
       Circle destinationCircle = Circle(
           circleId: const CircleId('c_destination'),
-          strokeColor: Colors.blue,
+          strokeColor: RideColors.green,
           strokeWidth: 3,
           radius: 12,
           center: pickupLatLng,
-          fillColor: RideColors.accentPurple);
+          fillColor: RideColors.green);
 
       setState(() {
         _markers.add(pickupMarker);
