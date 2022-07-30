@@ -1,16 +1,59 @@
-# EcoRide
+<div align="center">
+  <h1>ECORIDE</h1>
 
-App to share trips and make them cheap
+![image](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![image](https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black)
 
-## Getting Started
+  <p>Application to practice with maps and routes, simulating that it is for people who have a car and would like to take other people who are going to the same destination and only have to cooperate with a small amount.</p>
+</div>
 
-This project is a starting point for a Flutter application.
+### Preview
 
-A few resources to get you started if this is your first Flutter project:
+This image is a screenshot of my emulator that doesn't work very well.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<div align="center">
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![](./.readme-static/app.gif)
+
+</div>
+
+## Features
+
+- Use of google maps
+- Geocoding integration
+- Firebase for authentication
+- Address autocomplete
+- Custom bookmarks
+
+## Important
+
+This application only uses the google map, the routes, polylines and the autocomplete are from third parties. To have a better result, it is best to use the libraries offered by the google suite that work very well together.
+
+## Installation
+
+To clone and run this application, you'll need [Git](https://git-scm.com) and
+[Flutter](https://docs.flutter.dev/get-started/install) installed on your computer. 
+
+From your command line:
+
+```bash
+# Clone this repository
+$ git clone https://github.com/DavidBarcenas/flutter-eco-ride.git
+
+# Go into the repository
+$ cd flutter-eco-ride
+
+# Install dependencies
+$ flutter pub get
+
+# Run the app in the way your IDE describes
+```
+
+## Note
+ 
+Don't forget to add your environment variables for firebase and google maps. Look for the file **env.example** in the root of the project.
+
+## License
+
+Released under the [MIT licensed](LICENSE).\
+Feel free to fork this project and improve it. Give a ⭐️ if you like this project!
